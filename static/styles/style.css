@@ -1,0 +1,14 @@
+.regestration-conteiner {
+    max-width: 300px;
+    margin: 50px;
+    flex-direction: column;
+    text-align: center;
+}
+
+.in {
+    margin: 100px;
+}
+
+.mem {
+    text-size-adjust: 25px;
+}

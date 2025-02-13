@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>site</title>
+    <link type="text/css" href="https://group667.ru/static/styles/auth.css" rel="stylesheet" >
+</head>
+
+<body>
+    <div class="header_container" id="header">
+        <!-- Логотип в шапке -->
+        <a href="https://group667.ru/index.php" onclick="location.href='../../index.php';" class="icon_button"></a>
+        <h1>Авторизация</h1>
+    </div>
+
+    <!--Конец заголовка-->
+    <!--Если всё сломается, раньше здесь был div-->
+    <form action="authorization.php" method="post">
+        <div class="userInput">
+            <img src="../../static/images/iconsauthorization/user.png" />
+            <label for="username"></label>
+            <input type="text" id="username" name="username" placeholder="Имя аккаунта">
+        </div>
+
+        <div class="userInput">
+            <img src="../../static/images/iconsauthorization/password.png" />
+            <label for="password"></label>
+            <input type="text" id="password" name="password" placeholder="Пароль">
+        </div>
+        <!--Конец полей ввода. Дальше предупреждающий текст и кнопка-->
+        <button type="submit">Войти</button>
+
+        <div class="warning">
+            <a>Если у вас нет аккаунта, вы можете</a>
+            <a class="redirection" href="../registration/registration.html">зарегистрироваться</a>
+        </div>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://group667.ru/static/styles/reg.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet" />
+</head>
+
+<body>
+    <div>
+        <!--Класс заголовка-->
+        <div class="header_container" id="header">
+            <!-- Логотип в шапке -->
+            <a href="https://group667.ru/index.php" onclick="location.href='../../index.php';" class="icon_button"></a>
+            <h1>Регистрация</h1>
+        </div>
+    
+        <!--Конец заголовка-->
+
+        <form action="registration.php" method="post">
+            <!-- Дальше идут отдельные классы для полей ввода -->
+            <div class="userInput">
+                <img src="..\..\static\images\iconsreg\user.png" />
+                <label for="username"></label>
+                <input type="text" id="username" name="username" placeholder="Имя аккаунта">
+            </div>
+
+            <div class="userInput">
+                <img src="..\..\static\images\iconsreg\password.png" />
+                <label for="password"></label>
+                <input type="text" id="password" name="password" placeholder="Пароль">
+            </div>
+
+            <div class="userInput">
+                <img src="..\..\static\images\iconsreg\password.png" />
+                <label for="password"></label>
+                <input type="text" id="password2" name="password2" placeholder="Повторите пароль">
+            </div>
+            <!--Конец полей ввода. Дальше предупреждающий текст и кнопка-->
+            <p>Создавая данный аккаунт, вы подтверждаете, что не имеете каких-либо претензий к Group 667</p>
+
+            <button type="submit" id="btn">Подтвердить</button>
+            <p id="password_error">Пароли не совпадают</p>
+        </form>
+    </div>
+
+
+    <script>
+        const password = document.getElementById('password');
+        const password2 = document.getElementById('password2');
+        const password_error = document.getElementById('password_error');
+        const btn = document.getElementById('btn');
+
+        password2.addEventListener('blur', function() {
+            if (password2.value != password.value) {
+                btn.style.display = 'none';
+                password_error.style.display = 'block';
+            } else {
+                btn.style.display = 'block';
+                password_error.style.display = 'none';
+            }
+        });
+
+        password2.addEventListener('input', function() {
+            if (password2.value == password.value) {
+                btn.style.display = 'block';
+                password_error.style.display = 'none';
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+* {
+    font-family: "Montserrat", serif;
+}
+
+body {
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    background-color: white;
+    width: 700px;
+    margin-top: 4rem;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    background-color: Snow;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: rgb(46, 46, 46);
+    
+}
+
+button {
+    background: red;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    
+    transition: background 0.1s linear;
+}
+
+button:hover {
+    background-color: #dd3434;
+}   
+
+input{
+    margin: 0px;
+}
+
+.forms{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#name{
+    margin-right: 5px;
+}
+
+#email{
+    width: 315px;
+}
+
+input{
+    padding: 4px;
+    border: 1px solid gray;
+    border-radius: 6px;
+    padding: 10px 0px 10px 5px;
+    background-color: #a04c4d06;
+    transition: background-color 0.5s;
+}
+
+input:focus {
+    background-color: white; 
+    outline: none; 
+}
+
+#btn2{
+    margin-top: 20px;
+}
+
+
+#afterEmail{
+    margin-top: 15px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+h1{
+    text-align: center;
+    margin-left: 30px;
+}
+
+.icon_button {
+    width: 50px;
+    max-height: 27px;
+    height: 100%;
+    border: none;
+    background-image: url("../images/iconsreg/mybiglogo.png");
+    background-position: top center;
+    background-size: contain;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+.icon_button:hover {
+    opacity: 0.8;
+}
+
+.icon_button:active {
+    transform: scale(0.95);
+}
+
+.header_container {
+    display: flex;
+    align-items: center;
+    height: 70px;
+}
+
+#email_error, #password_error {
+    color: red;
+    display: none;
+}
+

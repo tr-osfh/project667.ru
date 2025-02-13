@@ -1,0 +1,303 @@
+/* Основные стили для тела страницы */
+body {
+    font-family: "Montserrat", serif;
+    /* Шрифт Montserrat, резервный - serif */
+    font-optical-sizing: auto;
+    /* Автоматическая оптическая настройка шрифта */
+    font-weight: 400;
+    /* Нормальная толщина текста */
+    background-color: white;
+    /* Белый фон */
+}
+
+/* Применение модели box-sizing ко всем элементам */
+* {
+    box-sizing: border-box;
+    /* Включение padding и border в общие размеры элементов */
+}
+
+/* Главный контейнер */
+.container {
+    width: 100%;
+    /* Контейнер занимает всю ширину */
+    max-width: 1280px;
+    /* Максимальная ширина - 1280px */
+    margin: 1rem auto;
+    /* Внешний отступ по вертикали 1rem и автоцентрирование по горизонтали */
+    padding: 0.7rem 1.5rem;
+    /* Внутренние отступы */
+    text-align: center;
+    /* Центрирование текста внутри контейнера */
+    overflow: hidden;
+    /* Скрытие содержимого, выходящего за границы контейнера */
+}
+
+/* Стили для логотипа в шапке */
+.header_icon {
+    width: 150px;
+    /* Ширина логотипа */
+    height: auto;
+    /* Высота подстраивается автоматически */
+}
+
+.icon_button {
+    width: 100px;
+    max-height: 100px;
+    height: 100%;
+    border: none;
+    background-image: url("../images/mainpage/667BIG.png");
+    background-position: top center;
+    background-position: -5px;
+    background-size: contain;
+    background-size: 130% 120%;
+    backgrount-repeat: none;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+.icon_button:hover {
+    opacity: 0.8;
+}
+
+.icon_button:active {
+    transform: scale(0.95);
+}
+
+/* Шапка страницы */
+.header_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Заголовок влево, кнопки вправо */
+    max-width: 100%;
+    height: 100px;
+    border-bottom: 0.1rem solid black;
+}
+
+.header-title_container {
+    flex: 1;
+    /* Контейнер занимает всё доступное пространство между логотипом и кнопками */
+    text-align: left;
+    /* Выравнивание текста по левому краю */
+    margin-left: 20px;
+    /* Отступ от левого края */
+}
+
+/* Стили для заголовков в шапке */
+.header_container h2,
+.header_container h3 {
+    margin: 0;
+    /* Убираем отступы у заголовков */
+}
+
+/* Заголовок в шапке */
+.header_title {
+    margin: 0;
+    /* Убираем все отступы */
+
+    flex: 1;
+    /* Заставляем контейнер занять доступное пространство */
+}
+
+/* Контейнер для кнопок */
+.button-container {
+    display: flex;
+    /* Flex-контейнер для кнопок */
+    justify-content: center;
+    /* Центрирование кнопок по горизонтали */
+    font-size: 13px;
+    /* Размер текста кнопок */
+    font-weight: 700;
+    /* Полужирное начертание текста */
+    text-transform: uppercase;
+    /* Преобразование текста в верхний регистр */
+    overflow: hidden;
+    /* Скрытие выходящего содержимого */
+    width: 410px;
+    /* Ширина контейнера */
+    border-radius: 5px;
+    /* Скругленные углы */
+}
+
+/* Анимация изменения прозрачности кнопок при наведении */
+.button-container:hover .btn {
+    opacity: 0.1;
+    /* Прозрачность 0.1 при наведении на контейнер */
+    transition: 0.3s;
+    /* Плавный переход */
+}
+
+.button-container .btn:hover {
+    opacity: 1;
+    /* Полная видимость кнопки при наведении */
+    transition: 0.3s;
+    /* Плавный переход */
+}
+
+/* Основные стили кнопок */
+.btn {
+    background: red;
+    /* Красный фон */
+    color: white;
+    /* Белый текст */
+    display: flex;
+    /* Flex-контейнер */
+    align-items: center;
+    /* Центрирование текста по вертикали */
+    justify-content: center;
+    /* Центрирование текста по горизонтали */
+    border: none;
+    /* Убираем границу */
+    cursor: pointer;
+    /* Курсор "рука" при наведении */
+    font-weight: bold;
+    /* Полужирное начертание текста */
+    text-decoration: none;
+    /* Убираем подчёркивание */
+    flex: 1;
+    /* Равномерное распределение пространства */
+    transition: background 0.1s linear;
+    /* Плавный переход фона */
+}
+
+.btn-add {
+    display: flex;
+    /* Flex-контейнер для кнопок */
+    justify-content: center;
+    padding: 10px 7px;
+}
+
+/* Кнопка "Sign In" */
+.btn_sign-in {
+    padding: 10px 7px;
+    /* Внутренние отступы */
+    background: red;
+    /* Красный фон */
+    color: white;
+    /* Белый текст */
+    text-decoration: none;
+    /* Убираем подчёркивание */
+}
+
+/* Кнопка "Log In" */
+.btn_log-in {
+    padding: 10px 7px;
+    /* Внутренние отступы */
+    text-decoration: none;
+    /* Убираем подчёркивание */
+    background: red;
+    /* Красный фон */
+    color: white;
+    /* Белый текст */
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* Контейнер для блока информации */
+.info_container {
+    max-width: 1280px;
+    /* Максимальная ширина 1280px */
+    width: 100%;
+    /* Контейнер занимает всю ширину */
+    display: flex;
+    /* Flex-контейнер */
+    gap: 20px;
+    /* Расстояние между блоками */
+    align-items: center;
+    /* Вертикальное выравнивание */
+    justify-content: space-between;
+    /* Равное расстояние между блоками */
+}
+
+/* Заголовок блока */
+.inf_title {
+    color: black;
+    /* Чёрный цвет текста */
+    font-size: 35px;
+    /* Размер шрифта 30px */
+    font-weight: bold;
+}
+
+/* Блок информации */
+.info_block {
+    max-width: 400px;
+    /* Максимальная ширина блока */
+    margin: 20px auto;
+    /* Центрирование блока с отступами */
+    padding: 30px 20px;
+    /* Внутренние отступы */
+    background-color: #f9f9f9;
+    /* Светлый фон */
+    border-radius: 10px;
+    /* Скругленные углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Лёгкая тень */
+    text-align: center;
+    /* Центрирование текста */
+}
+
+/* Заголовок внутри блока */
+.info_block_title {
+    font-size: 36px;
+    /* Размер заголовка */
+    font-weight: bold;
+    /* Полужирное начертание */
+    margin-bottom: 15px;
+    /* Отступ снизу */
+    color: #000;
+    /* Чёрный цвет текста */
+}
+
+/* Основной текст внутри блока */
+.info_block_text {
+    font-size: 18px;
+    /* Размер текста */
+    line-height: 1.6;
+    /* Межстрочное расстояние */
+    color: #555;
+    /* Серый текст */
+    margin-bottom: 20px;
+    /* Отступ снизу */
+}
+
+/* Фото информации */
+.prof-photo {
+    width: 100%;
+    /* Фото занимает всю ширину */
+    height: 250px;
+    /* Фиксированная высота 250px */
+    display: block;
+    /* Отображение как блочный элемент */
+}
+
+/* Содержимое блока */
+.inf_content {
+    transition: opacity 0.2s linear;
+    /* Плавный переход прозрачности */
+    display: flex;
+    /* Flex-контейнер */
+    justify-content: center;
+    /* Центрирование содержимого по горизонтали */
+    align-items: center;
+    /* Центрирование содержимого по вертикали */
+    position: absolute;
+    /* Абсолютное позиционирование */
+    top: 0;
+    /* Привязка к верхнему краю */
+    left: 0;
+    /* Привязка к левому краю */
+    width: 100%;
+    /* Ширина 100% */
+    height: 100%;
+    /* Высота 100% */
+    background-color: rgba(232, 69, 69, 0.9);
+    /* Полупрозрачный красный фон */
+    z-index: 2;
+    /* Приоритет слоя */
+    text-align: center;
+    /* Центрирование текста */
+    opacity: 0;
+    /* Изначальная невидимость */
+}

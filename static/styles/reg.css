@@ -1,0 +1,140 @@
+html {
+    background-color: rgb(248, 248, 245)
+}
+
+body {
+    font-family: "Montserrat", serif;
+    font-weight: 500;
+    width: 40rem;
+    height: 30rem;
+    margin-top: 4rem;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+
+    /* Код для тени */
+    background-color: Snow;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: rgb(46, 46, 46);
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    margin-bottom: 1rem;
+}
+
+.header>img {
+    width: 5.25rem;
+    height: 5.25rem;
+}
+
+.userInput {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+
+    border: 3px solid rgb(255, 31, 31);
+    border-radius: 6px;
+    background-color: rgb(255, 31, 31);
+
+    margin-bottom: 1rem;
+    padding: 0.25rem;
+}
+
+.userInput input {
+    width: 23.5rem;
+
+    outline: none;
+    border: none;
+    background-color: rgb(248, 248, 245);
+    color: rgb(92, 92, 92);
+
+    font-family: "Montserrat", serif;
+    font-weight: 700;
+}
+
+.userInput img {
+    width: 1.3rem;
+    height: 1.3rem;
+}
+
+form {
+    width: 25rem;
+    height: 8.6rem;
+    margin-left: auto;
+    text-align: left;
+    margin-right: auto;
+
+    background-color: rgb(92, 92, 92);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    border-radius: 6px;
+    padding: 1.5rem;
+}
+
+p {
+    display: block;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+form button {
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    display: inline-block;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 32px;
+
+    font-size: 14px;
+    font-family: "Montserrat", serif;
+    text-align: center;
+    color: white;
+
+    background: rgb(92, 92, 92);
+    transition: background-color 0.6s;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: rgb(255, 31, 31);
+}
+
+
+#password_error {
+    color: rgb(255, 31, 31);
+    display: none;
+}
+
+.header_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* Заголовок влево, кнопки вправо */
+    width: 100%;
+    height: 100px;
+}
+
+.icon_button {
+    width: 100px;
+    max-height: 100px;
+    height: 100%;
+    border: none;
+    background-image: url("../images/mainpage/667BIG.png");
+    background-position: top center;
+    background-position: -5px;
+    background-size: 130% 120%;
+    cursor: pointer;
+}
+
+h1 {
+    margin-right: 32.5%;
+}
