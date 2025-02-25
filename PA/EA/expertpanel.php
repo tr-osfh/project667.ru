@@ -21,6 +21,10 @@
 
     <h3>Выйти из панели эксперта</h3>
 
+    <form action="addprofession.php" method="post">
+        <button type="submit">Добавить профессию</button>
+    </form>
+
     <form action="../../redirectPages/goPA.php" method="post">
         <button type="submit">вернуться в личный кабинет</button>
     </form>
