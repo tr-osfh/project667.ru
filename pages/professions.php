@@ -20,7 +20,7 @@ include '../scripts/isRegistrated.php';
 <body>
     <div class="container">
         <div class="header_container" id="header">
-            <a href="https://group667.ru/" onclick="location.href='../index.html';" class="icon_button"></a>
+            <a href="https://group667.ru/" onclick="location.href='../index.php';" class="icon_button"></a>
             <div class="header-title_container">
                 <div class="header_title">
                     <h2>Group 667</h2>
@@ -48,81 +48,29 @@ include '../scripts/isRegistrated.php';
             </div>
         </div>
 
+
         <div class="body_container">
             <div class="prof_title">
                 <h2>Актуальные профессии</h2>
             </div>
             <div class="professions_container" id="prof-container">
                 <div class="profession_block">
-                    <img class="prof-photo" src="../static/images/professions/frontend.jpg" />
+                    <img class="prof-photo"
+                        src="https://slushaidom.ru/wp-content/uploads/2022/08/obuchenie-it-spetsialnostyam.jpg" />
                     <div class="prof_content">
-                        <div class="prof_title">Front-end разработчик</div>
+                        <div class="prof_title">НАЗВАНИЕ</div>
                         <div class="prof_description">
-                            Front-end разработчик отвечает за создание видимой части сайта. Он работает с HTML, CSS
-                            и JavaScript, чтобы сделать сайт красивым, удобным и интерактивным.
+                            Описание профессии
                         </div>
+                        <ul class="prof_requirements">
+                            <li>Требование 1</li>
+                            <li>Требование 2</li>
+                            <li>Требование 3</li>
+                            <li>Требование 4</li>
+                            <li>Требование 5</li>
+                            <li>Требование 6</li>
+                        </ul>
                     </div>
-                    <div class="prof_text">Создает интерфейсы для пользователей</div>
-                </div>
-                <div class="profession_block">
-                    <img class="prof-photo" src="../static/images/professions/backend.jpg" />
-                    <div class="prof_content">
-                        <div class="prof_title">Back-end разработчик</div>
-                        <div class="prof_description">
-                            Back-end разработчик занимается серверной частью приложения. Он работает с базами
-                            данных, API и логикой, которая скрыта от пользователя, но обеспечивает работу всего
-                            сайта.
-                        </div>
-                    </div>
-                    <div class="prof_text">Работает с серверной частью</div>
-                </div>
-                <div class="profession_block">
-                    <img class="prof-photo" src="../static/images/professions/web.jpg" />
-                    <div class="prof_content">
-                        <div class="prof_title">Web-разработчик</div>
-                        <div class="prof_description">
-                            Web-разработчик — это универсальный специалист, который может работать как с front-end,
-                            так и с back-end. Он создает полноценные веб-приложения, начиная от дизайна и заканчивая
-                            серверной логикой.
-                        </div>
-                    </div>
-                    <div class="prof_text">Универсальный специалист</div>
-                </div>
-                <div class="profession_block">
-                    <img class="prof-photo" src="../static/images/professions/data.jpg" />
-                    <div class="prof_content">
-                        <div class="prof_title">Data Scientist</div>
-                        <div class="prof_description">
-                            Анализирует данные, строит модели и делает прогнозы. Data Scientist анализирует большие
-                            объемы данных с помощью статистических методов и машинного обучения. Его цель — выявить
-                            закономерности и создать модели для предсказания будущих событий.
-                        </div>
-                    </div>
-                    <div class="prof_text">Анализирует данные</div>
-                </div>
-                <div class="profession_block">
-                    <img class="prof-photo" src="../static/images/professions/devops.jpg" />
-                    <div class="prof_content">
-                        <div class="prof_title">DevOps Engineer</div>
-                        <div class="prof_description">
-                            DevOps-инженер объединяет разработку и эксплуатацию программного обеспечения,
-                            автоматизируя процессы CI/CD. Он управляет инфраструктурой и обеспечивает надежность
-                            приложений через мониторинг и автоматизацию.
-                        </div>
-                    </div>
-                    <div class="prof_text">Автоматизирует процессы</div>
-                </div>
-                <div class="profession_block">
-                    <img class="prof-photo" src="../static/images/professions/ux.jpg" />
-                    <div class="prof_content">
-                        <div class="prof_title">UI/UX Designer</div>
-                        <div class="prof_description">
-                            UI/UX дизайнер создает удобные и привлекательные интерфейсы для пользователей, исследуя
-                            их потребности и предпочтения. Он разрабатывает прототипы и проводит тестирования для
-                            улучшения пользовательского опыта.
-                        </div>
-                    </div>
-                    <div class="prof_text">Создает интерфейсы</div>
                 </div>
             </div>
         </div>

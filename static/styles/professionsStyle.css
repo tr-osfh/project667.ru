@@ -95,83 +95,59 @@ body {
 }
 
 .professions_container {
-    max-width: 1280px;
     width: 100%;
+    margin: 0 auto;
     display: flex;
-    flex-wrap: wrap;
-    gap: 45px;
-    /* align-items: center; */
-    justify-content: space-between;
-    margin-top: 2rem;
-}
-
-.prof_title {
-    color: black;
-    font-size: 20px;
-    text-align: center;
-    margin-bottom: 2rem;
+    justify-content: center;
+    align-items: center;
 }
 
 .profession_block {
-    position: relative;
-    color: black;
-    max-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
+    max-width: 1100px;
     overflow: hidden;
-    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .prof-photo {
-    width: 100%;
-    height: 250px;
+    width: 200px;
+    height: auto;
     display: block;
-    border-radius: 15px;
+    border-radius: 10px;
+    margin-right: 20px;
 }
 
 .prof_content {
-    transition: opacity 0.2s linear;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 250px;
-    background-color: rgba(232, 69, 69, 0.9);
-    z-index: 2;
-    text-align: center;
-    opacity: 0;
-    padding: 20px;
-    box-sizing: border-box;
-    border-radius: 15px;
+    flex: 1; /* Занимает оставшееся пространство */
+    text-align: left; /* Текст выравнивается по левому краю */
+    padding: 10px;
 }
 
-.profession_block:hover .prof_content {
-    opacity: 1;
-}
-
-.prof_content .prof_title {
-    width: 100%;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
+.prof_description {
+    color: black;
+    font-size: 16px;
     margin-bottom: 10px;
-}
-
-.prof_content .prof_description {
-    width: 100%;
-    color: white;
-    font-size: 14px;
     line-height: 1.4;
 }
 
-.prof_text {
-    margin-top: 10px;
-    font-size: 16px;
+.prof_requirements {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     color: black;
-    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.prof_requirements li {
+    margin-bottom: 5px;
 }
 
 .icon_button {
@@ -179,7 +155,7 @@ body {
     max-height: 100px;
     height: 100%;
     border: none;
-    background-image: url("../images/mainpage/667BIG.png");
+    background-image: url("prof_photos/667BIG.png");
     background-position: top center;
     background-position: -5px;
     background-size: contain;
