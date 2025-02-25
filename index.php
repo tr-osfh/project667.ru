@@ -66,6 +66,8 @@ include 'scripts/isRegistrated.php';
             </div>
         </div>
 
+        <h1>НА САЙТЕ ВЕДУТСЯ РАБОТЫ</h1>
+
         <!-- Основной контент страницы -->
         <div class="body_container">
             <!-- Заголовок страницы -->

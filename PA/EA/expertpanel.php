@@ -19,15 +19,25 @@
         <h1>Панель эксперта</h1>
     </div>
 
+    <h3>Список профессий</h3>
+    <div>
+        <?php include "../../expertRights/currentProfessions.php" ?>
+    </div>
+
+    <h3>Добавить профессию</h3>
+
+    <div>
+        <form action="addprofession.php" method="post">
+            <button type="submit">Добавить профессию</button>
+        </form>
+    </div>
+
     <h3>Выйти из панели эксперта</h3>
-
-    <form action="addprofession.php" method="post">
-        <button type="submit">Добавить профессию</button>
-    </form>
-
-    <form action="../../redirectPages/goPA.php" method="post">
-        <button type="submit">вернуться в личный кабинет</button>
-    </form>
+    <div>
+        <form action="../../redirectPages/goPA.php" method="post">
+            <button type="submit">вернуться в личный кабинет</button>
+        </form>
+    </div>
 </body>
 
 </html>
