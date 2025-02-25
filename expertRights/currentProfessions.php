@@ -37,7 +37,7 @@ if ($stmt = $connection->prepare($sql)) {
             echo '<div class="forms">';
             echo '  <form action="../../expertRights/deliteProfession.php" method="post">';
             echo '      <input type="hidden" name="id" value= "' . $line['id'] . '">';
-            echo '      <button type="submit">УДАЛИТЬ</button>';
+            echo '      <button type="submit" class="delit">УДАЛИТЬ</button>';
             echo '  </form>';
             echo '</div> ';
             echo "</td>";
