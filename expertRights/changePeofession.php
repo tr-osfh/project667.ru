@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $servername = "localhost";
 $username = "u3003666_root";
@@ -13,11 +14,13 @@ if ($connection->connect_error) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = htmlspecialchars($_POST["id"]);
-    $connection->query("SET FOREIGN_KEY_CHECKS = 0");
-    $sql = "DELETE FROM `professions` WHERE `id`= ?";
+    $profession_name = htmlspecialchars($_POST["profname"]);
+    $descriprion = htmlspecialchars($_POST["description"]);
+    $ph_link = htmlspecialchars($_POST["photolink"]);
+
+    $sql = "UPDATE `professions` SET `profname`= ?, `description`= ?, `photolink`= ? WHERE `id`= ?";
     $stmt = $connection->prepare($sql);
-    $stmt->bind_param("s", $id);
+    $stmt->bind_param("sssi", $profession_name, $descriprion, $ph_link, $id);
     $stmt->execute();
-    $connection->query("SET FOREIGN_KEY_CHECKS = 1");
     header('Location:https://group667.ru/PA/EA/expertpanel.php');
 }
