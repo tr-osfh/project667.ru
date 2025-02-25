@@ -47,32 +47,11 @@ include '../scripts/isRegistrated.php';
                 <img class="authorization_icon" src="" />
             </div>
         </div>
-
-
         <div class="body_container">
             <div class="prof_title">
                 <h2>Актуальные профессии</h2>
             </div>
-            <div class="professions_container" id="prof-container">
-                <div class="profession_block">
-                    <img class="prof-photo"
-                        src="https://slushaidom.ru/wp-content/uploads/2022/08/obuchenie-it-spetsialnostyam.jpg" />
-                    <div class="prof_content">
-                        <div class="prof_title">НАЗВАНИЕ</div>
-                        <div class="prof_description">
-                            Описание профессии
-                        </div>
-                        <ul class="prof_requirements">
-                            <li>Требование 1</li>
-                            <li>Требование 2</li>
-                            <li>Требование 3</li>
-                            <li>Требование 4</li>
-                            <li>Требование 5</li>
-                            <li>Требование 6</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <?php include "../scripts/allProfessions.php" ?>
         </div>
     </div>
 </body>
