@@ -10,7 +10,7 @@ if ($connection->connect_error) {
     die("Ошибка: " . $connection->connect_error);
 }
 
-$sql = "SELECT `profname`, `description`, `photolink` FROM `professions`";
+$sql = "SELECT `profname`, `description`, `photolink`, `id` FROM `professions`";
 
 if ($stmt = $connection->prepare($sql)) {
     $stmt->execute();
@@ -18,7 +18,10 @@ if ($stmt = $connection->prepare($sql)) {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
+        include "skillsList.php";
         while ($line = $result->fetch_assoc()) {
+            $id = $line['id'];
+            $skills = getSkillsList($id);
             echo '<div class="professions_container" id="prof-container">';
             echo '    <div class="profession_block">';
             echo '        <img class="prof-photo"';
@@ -29,12 +32,13 @@ if ($stmt = $connection->prepare($sql)) {
             echo '                ' . $line['description'];
             echo '            </div>';
             echo '            <ul class="prof_requirements">';
-            echo '                <li>Требование 1</li>';
-            echo '                <li>Требование 2</li>';
-            echo '                <li>Требование 3</li>';
-            echo '                <li>Требование 4</li>';
-            echo '                <li>Требование 5</li>';
-            echo '                <li>Требование 6</li>';
+            echo '                <li>' . $skills[0] . '</li>';
+            echo '                <li>' . $skills[1] . '</li>';
+            echo '                <li>' . $skills[2] . '</li>';
+            echo '                <li>' . $skills[3] . '</li>';
+            echo '                <li>' . $skills[4] . '</li>';
+            echo '                <li>' . $skills[5] . '</li>';
+            echo '                <li>' . $skills[6] . '</li>';
             echo '            </ul>';
             echo '        </div>';
             echo '    </div>';

@@ -20,16 +20,22 @@
 
     <form action="../../expertRights/rateProfession.php" method="post">
 
-        <input type="text" id="value1" name="value1" placeholder="оценка 2">
-        <input type="text" id="value2" name="value2" placeholder="оценка 2">
-        <input type="text" id="value3" name="value3" placeholder="оценка 3">
-        <input type="text" id="value4" name="value4" placeholder="оценка 4">
-        <input type="text" id="value5" name="value5" placeholder="оценка 5">
-        <input type="text" id="value6" name="value6" placeholder="оценка 6">
-        <input type="text" id="value7" name="value7" placeholder="оценка 7">
+        <ul id="sortable-list">
+            <li data-id="skill">Скилл</li>
+            <li data-id="knowlege">Знания</li>
+            <li data-id="sport">Физподготовка</li>
+            <li data-id="creativity">Креативность</li>
+            <li data-id="communication">Коммуникабельность</li>
+            <li data-id="confidence">Уверенность</li>
+            <li data-id="chill">Чиловость</li>
+        </ul>
+
+        <input type="hidden" name="order" id="order-input">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+        <script src="../../scripts/sortable_list.js"></script>
 
 
-        <input type="hidden" name="id" value=<?php $id ?>>
+        <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
         <button type="submit">Закончить оценивание</button>
     </form>
 </body>
