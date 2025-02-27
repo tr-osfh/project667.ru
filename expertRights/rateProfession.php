@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['order'])) {
         $order = explode(",", $_POST['order']);
     }
-
+    $expertID = htmlspecialchars($_POST["expertID"]);
     $id = htmlspecialchars($_POST["id"]);
     $c = 1;
     foreach ($order as &$value) {
@@ -53,10 +53,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 
-    $sql = "INSERT INTO `profession_data` (`value1`, `value2`, `value3`, `value4`, `value5`, `value6`, `value7`, `profid`)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO `profession_data` (`value1`, `value2`, `value3`, `value4`, `value5`, `value6`, `value7`, `profid`, `expertID`)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $connection->prepare($sql);
-    $stmt->bind_param("ssssssss", $resOfRate[0], $resOfRate[1], $resOfRate[2], $resOfRate[3], $resOfRate[4], $resOfRate[5], $resOfRate[6], $id);
+    $stmt->bind_param("sssssssss", $resOfRate[0], $resOfRate[1], $resOfRate[2], $resOfRate[3], $resOfRate[4], $resOfRate[5], $resOfRate[6], $id, $expertID);
     $stmt->execute();
 
     $sql = "SELECT `value1`, `value2`, `value3`, `value4`, `value5`, `value6`, `value7`, `profid` FROM `profession_data` WHERE `profid` = ?";

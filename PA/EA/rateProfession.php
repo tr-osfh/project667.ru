@@ -1,5 +1,30 @@
-<?php session_start(); ?>
-<!-- К строке выше не прикасаться, она отвечает за запуск сессии -->
+<?php
+session_start();
+$servername = "localhost";
+$username = "u3003666_root";
+$password = "9MhtHL8QmFHjbiK";
+$db = "u3003666_project667";
+$connection = new mysqli($servername, $username, $password, $db);
+if ($connection->connect_error) {
+    die("Ошибка: " . $connection->connect_error);
+}
+
+include "../../expertRights/getProfessionName.php";
+
+$sql = "SELECT `id` FROM `profession_data` WHERE `expertID` = ? AND `profid` = ?";
+
+if ($stmt = $connection->prepare($sql)) {
+    $stmt->bind_param("ss", $_SESSION['id'], $id);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        header("Location: ../../redirectPages/alreadyRated.html");
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,9 +38,6 @@
 </head>
 
 <body>
-    <?php
-    include "../../expertRights/getProfessionName.php";
-    ?>
     <h1>Вы оцениваете профессию " <?php echo $profession_name ?> "</h1>
 
     <form action="../../expertRights/rateProfession.php" method="post">
@@ -34,7 +56,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
         <script src="../../scripts/sortable_list.js"></script>
 
-
+        <input type="hidden" name="expertID" id="expertID" value="<?php echo $_SESSION['id'] ?>">
         <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
         <button type="submit">Закончить оценивание</button>
     </form>
