@@ -17,4 +17,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         orderInput.value = order.join(",");
     }
+// ============================
+
+    const listItems = document.querySelectorAll('#sortable-list li');
+
+    listItems.forEach(item => {
+    item.addEventListener('dragstart', () => {
+        item.classList.add('dragging'); 
+    });
+
+    item.addEventListener('dragend', () => {
+        item.classList.remove('dragging');
+    });
+    });
+    
 });
