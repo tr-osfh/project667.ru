@@ -124,15 +124,25 @@ form button:hover {
 }
 
 .icon_button {
-    width: 100px;
-    max-height: 100px;
+    margin-left: 20px;
+    width: 73px;
+    max-height: 40px;
     height: 100%;
     border: none;
-    background-image: url("../images/mainpage/667BIG.png");
+    background-image: url("../images/iconsreg/mybiglogo.png");
     background-position: top center;
-    background-position: -5px;
-    background-size: 130% 120%;
-    cursor: pointer;
+    background-size: contain;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+.icon_button:hover {
+    opacity: 0.8;
+}
+
+.icon_button:active {
+    transform: scale(0.95);
 }
 
 h1 {
