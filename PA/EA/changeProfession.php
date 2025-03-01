@@ -23,7 +23,7 @@
     <?php
     include "../../expertRights/getProfessionName.php";
     ?>
-    <h1>Вы изменяете профессию " <?php echo $profession_name ?> "</h1>
+    <h1>Вы изменяете профессию<br>"<?php echo $profession_name ?>"</h1>
 
     <div class="forms">
         <form id="profform" action="../../expertRights/changePeofession.php" method="post">
