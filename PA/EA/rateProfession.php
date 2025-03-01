@@ -38,7 +38,7 @@ if ($stmt = $connection->prepare($sql)) {
 </head>
 
 <body>
-    <h1>Вы оцениваете профессию " <?php echo $profession_name ?> "</h1>
+    <h1>Вы оцениваете профессию<br>"<?php echo $profession_name ?>"</h1>
 
     <form action="../../expertRights/rateProfession.php" method="post">
 
