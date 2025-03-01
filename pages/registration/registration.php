@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $servername = "localhost";
 $username = "u3003666_root";
 $password = "9MhtHL8QmFHjbiK";
@@ -8,7 +8,7 @@ $connection = new mysqli($servername, $username, $password, $db);
 if ($connection->connect_error) {
     die("Ошибка: " . $connection->connect_error);
 }
-session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
