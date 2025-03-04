@@ -43,13 +43,13 @@ if ($stmt = $connection->prepare($sql)) {
     <form action="../../expertRights/rateProfession.php" method="post">
 
         <ul id="sortable-list">
-            <li data-id="skill">Скилл</li>
-            <li data-id="knowlege">Знания</li>
-            <li data-id="sport">Физподготовка</li>
-            <li data-id="creativity">Креативность</li>
-            <li data-id="communication">Коммуникабельность</li>
-            <li data-id="confidence">Уверенность</li>
-            <li data-id="chill">Чиловость</li>
+            <li data-id="analyticity">Аналитичность</li>
+            <li data-id="switching_attention">Переключение внимания</li>
+            <li data-id="planning">Планирование</li>
+            <li data-id="сritical_thinking">Кретическое мышление</li>
+            <li data-id="сommunication_skills">Коммуникабельность</li>
+            <li data-id="emotional_stability">Эмоциональная устойчивость</li>
+            <li data-id="сreativity">Креативность</li>
         </ul>
 
         <input type="hidden" name="order" id="order-input">

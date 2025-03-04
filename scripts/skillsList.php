@@ -27,13 +27,13 @@ function getSkillsList($id)
         $v7 = $innerline['value7'];
 
         $pvk = [
-            $v1 => "skill",
-            $v2 => "knowlege",
-            $v3 => "sport",
-            $v4 => "creativity",
-            $v5 => "communication",
-            $v6 => "confidence",
-            $v7 => "chill"
+            $v1 => "Аналитичность",
+            $v2 => "Переключение внимания",
+            $v3 => "Планирование",
+            $v4 => "Кретическое мышление",
+            $v5 => "Коммуникабельность",
+            $v6 => "Эмоциональная устойчивость",
+            $v7 => "Креативность"
         ];
 
         ksort($pvk);

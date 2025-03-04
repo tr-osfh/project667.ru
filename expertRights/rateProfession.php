@@ -21,31 +21,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $c = 1;
     foreach ($order as &$value) {
         switch ($value) {
-            case "skill":
+            case "analyticity":
                 $resOfRate[0] = $c;
                 $c = $c + 1;
                 break;
-            case "knowlege":
+            case "switching_attention":
                 $resOfRate[1] = $c;
                 $c = $c + 1;
                 break;
-            case "sport":
+            case "planning":
                 $resOfRate[2] = $c;
                 $c = $c + 1;
                 break;
-            case "creativity":
+            case "сritical_thinking":
                 $resOfRate[3] = $c;
                 $c = $c + 1;
                 break;
-            case "communication":
+            case "сommunication_skills":
                 $resOfRate[4] = $c;
                 $c = $c + 1;
                 break;
-            case "confidence":
+            case "emotional_stability":
                 $resOfRate[5] = $c;
                 $c = $c + 1;
                 break;
-            case "chill":
+            case "сreativity":
                 $resOfRate[6] = $c;
                 $c = $c + 1;
                 break;
