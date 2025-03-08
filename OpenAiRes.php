@@ -2,7 +2,7 @@
 
 session_start();
 
-$deepseek_api_key = 'sk-2ef5e53ce2e14db0baec0d275af6dba2';
+$deepseek_api_key = 'вот сюда апи вставлять';
 $deepseek_api_url = 'https://api.deepseek.com/v1/chat/completions';
 
 $host = 'localhost';
