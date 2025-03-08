@@ -40,24 +40,37 @@ if ($stmt = $connection->prepare($sql)) {
 <body>
     <h1>Вы оцениваете профессию<br>"<?php echo $profession_name ?>"</h1>
 
-    <form action="../../expertRights/rateProfession.php" method="post">
-
-        <ul id="sortable-list">
-            <li data-id="analyticity">Аналитичность</li>
-            <li data-id="switching_attention">Переключение внимания</li>
-            <li data-id="planning">Планирование</li>
-            <li data-id="сritical_thinking">Критическое мышление</li>
-            <li data-id="сommunication_skills">Коммуникабельность</li>
-            <li data-id="emotional_stability">Эмоциональная устойчивость</li>
-            <li data-id="сreativity">Креативность</li>
-        </ul>
-
-        <input type="hidden" name="order" id="order-input">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
-        <script src="../../scripts/sortable_list.js"></script>
-
-        <input type="hidden" name="expertID" id="expertID" value="<?php echo $_SESSION['id'] ?>">
-        <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
-        <button type="submit">Закончить оценивание</button>
+    <form id="searchForm">
+        <input type="text" name="query" placeholder="Введите поисковый запрос">
+        <button type="button" id="search">Искать ПВК</button> <!-- Добавлен type="button" -->
     </form>
+
+    <div id="result"></div> <!-- Элемент для вывода результатов -->
+
+    <form action="../../expertRights/rateProfession.php" method="post">
+        <button type="submit">Закончить оценку</button>
+    </form>
+
+    <script>
+        document.getElementById('search').addEventListener('click', function(event) {
+            event.preventDefault(); // Отменяем стандартное поведение формы
+
+            const query = document.querySelector('input[name="query"]').value;
+
+            fetch('../../OpenAiRes.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `query=${encodeURIComponent(query)}`
+                })
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('result').innerHTML = data; // Вставляем результат в div
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                });
+        });
+    </script>
 </body>

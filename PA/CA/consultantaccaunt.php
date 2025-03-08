@@ -81,7 +81,7 @@
         <button type="submit">ПОКИНУТЬ АККАУНТ</button>
     </form>
 
-    
+
     <script>
         const name_input = document.getElementById('name');
         const surname_input = document.getElementById('surname');

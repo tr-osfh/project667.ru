@@ -56,17 +56,17 @@
 
 
         date_time.addEventListener('blur', function() {
-            if (!regex.test(date_time.value)){
+            if (!regex.test(date_time.value)) {
                 button.style.display = 'none';
                 date_time_error.style.display = 'block';
             } else {
                 button.style.display = 'block';
                 date_time_error.style.display = 'none';
-            } 
+            }
         });
 
         date_time.addEventListener('input', function() {
-            if (regex.test(date_time.value)){
+            if (regex.test(date_time.value)) {
                 button.style.display = 'block';
                 date_time_error.style.display = 'none';
             }
