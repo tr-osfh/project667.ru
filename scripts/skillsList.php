@@ -10,51 +10,119 @@ function getSkillsList($id)
         die("Ошибка: " . $connection->connect_error);
     }
 
+    // Исправленный SQL-запрос
+    $sql = "
+        SELECT `pvk_id`, COUNT(`pvk_id`) AS frequency
+        FROM `selectedPVK`
+        WHERE `profession_id` = ?
+        GROUP BY `pvk_id`
+        ORDER BY frequency DESC";
 
-    $sql = "SELECT `value1`, `value2`, `value3`, `value4`, `value5`, `value6`, `value7`, `profid` FROM `profession_data` WHERE `profid` = ?";
     $stmt = $connection->prepare($sql);
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
-    $innerline = $result->fetch_assoc();
-    if (!is_null($innerline)) {
-        $v1 = $innerline['value1'];
-        $v2 = $innerline['value2'];
-        $v3 = $innerline['value3'];
-        $v4 = $innerline['value4'];
-        $v5 = $innerline['value5'];
-        $v6 = $innerline['value6'];
-        $v7 = $innerline['value7'];
 
-        $pvk = [
-            $v1 => "Аналитичность",
-            $v2 => "Переключение внимания",
-            $v3 => "Планирование",
-            $v4 => "Критическое мышление",
-            $v5 => "Коммуникабельность",
-            $v6 => "Эмоциональная устойчивость",
-            $v7 => "Креативность"
+    $sorted_qualities = [];
+    while ($row = $result->fetch_assoc()) {
+        $sorted_qualities[] = [
+            'id' => $row['pvk_id'],
+            'frequency' => $row['frequency']
         ];
-
-        ksort($pvk);
-        $c = 0;
-        $resPVK = array();
-        foreach ($pvk as $value => $name) {
-            $resPVK[$c] = $name;
-            $c = $c + 1;
-        }
-    } else {
-        $resPVK[0] = "Профессия не оценена экспертом!";
-        $resPVK[1] = "Профессия не оценена экспертом!";
-        $resPVK[2] = "Профессия не оценена экспертом!";
-        $resPVK[3] = "Профессия не оценена экспертом!";
-        $resPVK[4] = "Профессия не оценена экспертом!";
-        $resPVK[5] = "Профессия не оценена экспертом!";
-        $resPVK[6] = "Профессия не оценена экспертом!";
     }
 
+    if (!empty($sorted_qualities)) {
+        $pvk_ids = array_column($sorted_qualities, 'id');
 
+        // Проверяем, что массив $pvk_ids не пуст
+        if (!empty($pvk_ids)) {
+            $placeholders = implode(',', array_fill(0, count($pvk_ids), '?'));
 
+            $sql2 = "
+                SELECT `id`, `description`
+                FROM `pvk`
+                WHERE `id` IN ($placeholders)";
 
-    return $resPVK;
+            $stmt2 = $connection->prepare($sql2);
+
+            // Исправлено: используем spread operator для передачи массива
+            $stmt2->bind_param(str_repeat('i', count($pvk_ids)), ...$pvk_ids);
+            $stmt2->execute();
+            $result2 = $stmt2->get_result();
+
+            $pvk_names = [];
+            while ($row = $result2->fetch_assoc()) {
+                $pvk_names[$row['id']] = $row['description'];
+            }
+
+            foreach ($sorted_qualities as &$quality) {
+                $quality['description'] = $pvk_names[$quality['id']]; // Используем 'id' вместо 'pvk_id'
+            }
+        }
+    }
+    return $sorted_qualities;
+}
+
+function getSkillsListForUser($id)
+{
+    $servername = "localhost";
+    $username = "u3003666_root";
+    $password = "9MhtHL8QmFHjbiK";
+    $db = "u3003666_project667";
+    $connection = new mysqli($servername, $username, $password, $db);
+    if ($connection->connect_error) {
+        die("Ошибка: " . $connection->connect_error);
+    }
+
+    // Исправленный SQL-запрос
+    $sql = "
+        SELECT `pvk_id`, COUNT(`pvk_id`) AS frequency
+        FROM `final_pvk`
+        WHERE `profession_id` = ?
+        GROUP BY `pvk_id`
+        ORDER BY frequency DESC";
+
+    $stmt = $connection->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $sorted_qualities = [];
+    while ($row = $result->fetch_assoc()) {
+        $sorted_qualities[] = [
+            'id' => $row['pvk_id'],
+            'frequency' => $row['frequency']
+        ];
+    }
+
+    if (!empty($sorted_qualities)) {
+        $pvk_ids = array_column($sorted_qualities, 'id');
+
+        // Проверяем, что массив $pvk_ids не пуст
+        if (!empty($pvk_ids)) {
+            $placeholders = implode(',', array_fill(0, count($pvk_ids), '?'));
+
+            $sql2 = "
+                SELECT `id`, `description`
+                FROM `pvk`
+                WHERE `id` IN ($placeholders)";
+
+            $stmt2 = $connection->prepare($sql2);
+
+            // Исправлено: используем spread operator для передачи массива
+            $stmt2->bind_param(str_repeat('i', count($pvk_ids)), ...$pvk_ids);
+            $stmt2->execute();
+            $result2 = $stmt2->get_result();
+
+            $pvk_names = [];
+            while ($row = $result2->fetch_assoc()) {
+                $pvk_names[$row['id']] = $row['description'];
+            }
+
+            foreach ($sorted_qualities as &$quality) {
+                $quality['description'] = $pvk_names[$quality['id']]; // Используем 'id' вместо 'pvk_id'
+            }
+        }
+    }
+    return $sorted_qualities;
 }

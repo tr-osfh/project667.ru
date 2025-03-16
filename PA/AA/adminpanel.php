@@ -47,6 +47,15 @@
         </form>
     </div>
 
+    <h3>Активные професии</h3>
+    <div>
+        <?php include "../../adminRights/addedProfessions.php" ?>
+    </div>
+
+    <h3>Архивированные профессии</h3>
+    <div>
+        <?php include "../../adminRights/archiveProfessions.php" ?>
+    </div>
 
     <h3>Выйти из панели администратора</h3>
     <form action="../../PA/AA/adminaccaunt.php" method="post">

@@ -28,9 +28,9 @@ if ($stmt = $connection->prepare($sql)) {
                 echo "<td style='padding: 10px;'>" . $line['profname'] . "</td>";
                 echo "<td style='padding: 10px;'>";
                 echo '<div class="forms">';
-                echo '  <form action="../../PA/EA/rateProfession.php" method="post">';
+                echo '  <form action="../../PA/EA/ratePVK.php" method="post">';
                 echo '      <input type="hidden" name="id" id="id" value= "' . $line['id'] . '">';
-                echo '      <button type="submit">Оценить</button>';
+                echo '      <button type="submit">Провести экспертизу ПВК</button>';
                 echo '  </form>';
                 echo '</div> ';
                 echo "</td>";

@@ -22,15 +22,24 @@ if ($stmt = $connection->prepare($sql)) {
             <th style='padding: 10px; text-align: left;'>Профессия</th></tr>";
 
         while ($line = $result->fetch_assoc()) {
-            if ($line['added'] == 1) {
+            if ($line["added"] == 1) {
                 echo "<tr>";
                 echo "<td style='padding: 10px;'>" . $line['id'] . "</td>";
                 echo "<td style='padding: 10px;'>" . $line['profname'] . "</td>";
+                echo "</td>";
                 echo "<td style='padding: 10px;'>";
                 echo '<div class="forms">';
-                echo '  <form action="../../PA/EA/rateProfession.php" method="post">';
+                echo '  <form action="changeProfession.php" method="post">';
                 echo '      <input type="hidden" name="id" id="id" value= "' . $line['id'] . '">';
-                echo '      <button type="submit">Оценить</button>';
+                echo '      <button type="submit">Изменить</button>';
+                echo '  </form>';
+                echo '</div> ';
+                echo "</td>";
+                echo "<td style='padding: 10px;'>";
+                echo '<div class="forms">';
+                echo '  <form action="../../adminRights/hideProfession.php" method="post">';
+                echo '      <input type="hidden" name="id" id="id" value= "' . $line['id'] . '">';
+                echo '      <button type="submit" class="delit">архивировать</button>';
                 echo '  </form>';
                 echo '</div> ';
                 echo "</td>";

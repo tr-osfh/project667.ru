@@ -10,7 +10,7 @@ if ($connection->connect_error) {
     die("Ошибка: " . $connection->connect_error);
 }
 
-$sql = "SELECT `profname`, `description`, `photolink`, `id` FROM `professions`";
+$sql = "SELECT `profname`, `description`, `photolink`, `id` FROM `professions` WHERE `added` = 1";
 
 if ($stmt = $connection->prepare($sql)) {
     $stmt->execute();
@@ -21,7 +21,9 @@ if ($stmt = $connection->prepare($sql)) {
         include "skillsList.php";
         while ($line = $result->fetch_assoc()) {
             $id = $line['id'];
-            $skills = getSkillsList($id);
+
+            $sorted_qualities = getSkillsListForUser($id);
+
             echo '<div class="professions_container" id="prof-container">';
             echo '    <div class="profession_block">';
             echo '        <img class="prof-photo"';
@@ -32,13 +34,13 @@ if ($stmt = $connection->prepare($sql)) {
             echo '                ' . $line['description'];
             echo '            </div>';
             echo '            <ul class="prof_requirements">';
-            echo '                <li>' . $skills[0] . '</li>';
-            echo '                <li>' . $skills[1] . '</li>';
-            echo '                <li>' . $skills[2] . '</li>';
-            echo '                <li>' . $skills[3] . '</li>';
-            echo '                <li>' . $skills[4] . '</li>';
-            echo '                <li>' . $skills[5] . '</li>';
-            echo '                <li>' . $skills[6] . '</li>';
+            if (!empty($sorted_qualities)) {
+                foreach ($sorted_qualities as $quality) {
+                    echo '<li>' . $quality['description'] .  ' Частота упоминаний: ' . $quality['frequency'] . '</li>';
+                }
+            } else {
+                echo '<li> Список профессионально важных качеств пуст <li>';
+            }
             echo '            </ul>';
             echo '        </div>';
             echo '    </div>';
@@ -48,7 +50,7 @@ if ($stmt = $connection->prepare($sql)) {
         echo "Профессий нет";
     }
 
-    $stmt->close(); // Закрываем подготовленный запрос
+    $stmt->close();
 } else {
-    echo "Ошибка выполнения запроса: " . $connection->error; // Выводим ошибку, если запрос не удалось подготовить
+    echo "Ошибка выполнения запроса: " . $connection->error;
 }

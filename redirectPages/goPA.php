@@ -18,6 +18,9 @@ if (isR()) {
         case "consultant":
             header('Location:https://group667.online/PA/CA/consultantaccaunt.php');
             break;
+        case "main_expert":
+            header('Location:https://group667.online/PA/EA/mainexpertaccaunt.php');
+            break;
         default:
             header('Location:https://group667.online/index.php');
     }

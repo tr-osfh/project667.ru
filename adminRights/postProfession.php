@@ -1,5 +1,4 @@
 <?php
-
 $servername = "localhost";
 $username = "u3003666_root";
 $password = "9MhtHL8QmFHjbiK";
@@ -13,11 +12,11 @@ if ($connection->connect_error) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = htmlspecialchars($_POST["id"]);
-    $connection->query("SET FOREIGN_KEY_CHECKS = 0");
-    $sql = "DELETE FROM `professions` WHERE `id`= ?";
+    $added = 1;
+    $sql = "UPDATE `professions` SET `added`= ? WHERE `id`=  ?";
     $stmt = $connection->prepare($sql);
-    $stmt->bind_param("s", $id);
+    $stmt->bind_param("ii", $added, $id);
     $stmt->execute();
-    $connection->query("SET FOREIGN_KEY_CHECKS = 1");
-    header('Location:https://group667.online/PA/EA/expertpanel.php');
 }
+
+header('Location:https://group667.online/PA/AA/adminpanel.php');
