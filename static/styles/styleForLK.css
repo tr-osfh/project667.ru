@@ -256,3 +256,27 @@ textarea:focus {
     }
 }
 
+.gender_div {
+    display: flex;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    overflow: hidden;
+    width: 410px;
+    border-radius: 5px;
+}
+
+/* Анимация изменения прозрачности кнопок при наведении */
+.gender_div:hover .btn {
+    opacity: 0.1;
+    transition: 0.3s;
+}
+
+.gender_div .btn:hover {
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.sex_selected{
+    background-color: gray;
+}

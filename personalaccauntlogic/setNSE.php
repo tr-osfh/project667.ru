@@ -40,14 +40,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
     }
 
-    $sex = htmlspecialchars($_POST["sex"]);
-    if ($sex != "") {
-        $id = $_SESSION["id"];
-        $sql = "UPDATE user_data SET sex = ? WHERE user_id = $id";
-        $stmt = $connection->prepare($sql);
-        $stmt->bind_param("s", $sex);
-        $stmt->execute();
-    }
+    // $sex = htmlspecialchars($_POST["sex"]);
+    // if ($sex != "") {
+    //     $id = $_SESSION["id"];
+    //     $sql = "UPDATE user_data SET sex = ? WHERE user_id = $id";
+    //     $stmt = $connection->prepare($sql);
+    //     $stmt->bind_param("s", $sex);
+    //     $stmt->execute();
+    // }
 
     $age = htmlspecialchars($_POST["age"]);
     if ($age != "") {

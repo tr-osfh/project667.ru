@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../../static/styles/styleForLK.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet" />
 </head>
@@ -66,12 +68,6 @@
         <form action="../../personalaccauntlogic/setNSE.php" method="post">
             <input type="text" id="name" name="name" placeholder="<?php echo getName(); ?>">
             <input type="text" id="surname" name="surname" placeholder="<?php echo getSurname(); ?>">
-            <p>Пол</p>
-            <input  type="text" id="sex" name="sex" placeholder="<?php echo getSex() !==
-                null && getSex() !== ""
-                ? getSex()
-                : "Введите пол"; ?>" >
-
             <p>Возраст</p>
             <input type="text" id="age" name="age" placeholder="<?php echo getAge(); ?>" >
             <p>Электронная почта</p>
@@ -79,6 +75,11 @@
             <p id="email_error">Неверно введена почта!</p>
             <div>
                 <button id="afterEmail" type="submit">подтвердить</button>
+            </div>
+            <p>Пол</p>
+            <div class="gender_div">
+                <button class=<?php include "../../personalaccauntlogic/isMale.php"; echo isMale();?> class="gender_btn" id="man_btn">Мужчина</button>
+                <button class=<?php include "../../personalaccauntlogic/isFemale.php"; echo isFemale();?> class="genderSet" id="woman_btn">Женщина</button>
             </div>
         </form>
     </div>
@@ -121,7 +122,8 @@
         const password2 = document.getElementById('password2');
         const password_error = document.getElementById('password_error')
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+        const man_btn = document.getElementById('man_btn');
+        const woman_btn = document.getElementById('woman_btn');
 
         function checkInput(inputElement, expectedValue) {
             if (inputElement.value === expectedValue) {
@@ -176,6 +178,34 @@
                 btn2.style.display = 'block';
                 password_error.style.display = 'none';
             }
+        });
+
+        man_btn.addEventListener('click', function() {
+            fetch(`../../personalaccauntlogic/setGender.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `sex=male`
+                })
+                .then(response => response.text())
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                })
+        });
+
+        woman_btn.addEventListener('click', function() {
+            fetch(`../../personalaccauntlogic/setGender.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `sex=female`
+                })
+                .then(response => response.text())
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                })
         });
     </script>
 </body>

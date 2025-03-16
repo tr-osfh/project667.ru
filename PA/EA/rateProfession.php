@@ -12,6 +12,7 @@ if ($connection->connect_error) {
     die("Ошибка: " . $connection->connect_error);
 }
 
+include "../../expertRights/getProfessionId.php";
 include "../../expertRights/getProfessionName.php";
 
 $sql = "SELECT `id` FROM `profession_data` WHERE `expertID` = ? AND `profid` = ?";
@@ -73,6 +74,7 @@ if ($stmt = $connection->prepare($sql)) {
         let list = [];
         const end_rate = document.getElementById('end_rate');
         const error = document.getElementById('error')
+        let profession_id = <?php echo json_encode($profession_id); ?>;
 
         document.getElementById('search').addEventListener('click', function(event) {
             loading.style.display = "block";
@@ -184,7 +186,7 @@ if ($stmt = $connection->prepare($sql)) {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    body: `pvk_id=${JSON.stringify(list)}`
+                    body: `pvk_id=${JSON.stringify(list)}&profession_id=${profession_id}`
                 })
                 .then(response => response.text()) 
                 .catch(error => {
