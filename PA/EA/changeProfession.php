@@ -16,7 +16,7 @@
 
 <body>
     <div class="header_container" id="header">
-        <a href="https://group667.ru/index.php" onclick="location.href='mainpage.html';" class="icon_button"></a>
+        <a href="https://group667.online/index.php" onclick="location.href='mainpage.html';" class="icon_button"></a>
         <h1>Изменить профессию</h1>
     </div>
 

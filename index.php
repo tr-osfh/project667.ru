@@ -16,7 +16,7 @@ include 'scripts/isRegistrated.php';
     <title>667gang</title>
 
     <!-- Подключение CSS-файла для стилей -->
-    <link rel="stylesheet" href="https://group667.ru/static/styles/main.css" />
+    <link rel="stylesheet" href="https://group667.online/static/styles/main.css" />
 
     <!-- Подключение шрифтов с Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -52,13 +52,13 @@ include 'scripts/isRegistrated.php';
                 if (!isR()) {
                     echo '<a href="redirectPages/goConsultation.php" class="btn btn-add">Консультации</a>';
                     echo '<a href="pages/professions.php" class="btn btn_sign-in">Профессии</a>';
-                    echo '<a href="#" class="btn btn-add">Тесты</a>';
+                    echo '<a href="redirectPages/goTests.php" class="btn btn-add">Тесты</a>';
                     echo '<a href="pages/registration/registration.html" class="btn btn_sign-in">Sign up</a>';
                     echo '<a href="scripts/isAlredyRegestrated.php" class="btn btn_log-in">Log in</a>';
                 } else {
                     echo '<a href="redirectPages/goConsultation.php" class="btn btn-add">Консультации</a>';
                     echo '<a href="pages/professions.php" class="btn btn_sign-in">Профессии</a>';
-                    echo '<a href="#" class="btn btn-add">Тесты</a>';
+                    echo '<a href="redirectPages/goTests.php" class="btn btn-add">Тесты</a>';
                     echo '<a href="redirectPages/goPA.php" class="btn btn_sign-in">Личный кабинет</a>';
                 }
                 ?>
@@ -113,7 +113,7 @@ include 'scripts/isRegistrated.php';
                     <!-- Основной текст блока -->
                     <div class="info_block_text">
                         Свяжитесь с нами по телефону +7 667 228-81-52, по
-                        электронной почте info@667gang.ru или отправьте
+                        электронной почте info@667gang.online или отправьте
                         голубя с письмом по адресу: село Никольское Меньковская ул. дом 10, палата 22.
                     </div>
                 </div>

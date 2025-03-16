@@ -1,15 +1,17 @@
 <?php
 
 session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-$deepseek_api_key = 'вот сюда апи вставлять';
+$deepseek_api_key = 'sk-2ef5e53ce2e14db0baec0d275af6dba2';
 $deepseek_api_url = 'https://api.deepseek.com/v1/chat/completions';
+$selected_pvk = json_decode($_POST['selected_pvk'], true);
 
 $host = 'localhost';
 $dbname = 'u3003666_project667';
 $username = 'u3003666_root';
 $password = '9MhtHL8QmFHjbiK';
-
 function ask_deepseek($prompt, $api_key, $api_url)
 {
     $data = [
@@ -81,7 +83,51 @@ function intelligent_search($query, $db_config, $api_key, $api_url)
 
 $search_query = $_POST['query'];
 
+// Сбрасываем список только при обычном POST (не AJAX)
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['action'])) {
+    $_SESSION['selected_pvk'] = [];
+}
 
+// Инициализация массива если не существует
+if (!isset($_SESSION['selected_pvk'])) {
+    $_SESSION['selected_pvk'] = [];
+}
+
+
+
+// Обработка AJAX-запроса ДО основного кода
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
+    header('Content-Type: application/json');
+
+    try {
+        if (!isset($_SESSION['id'])) {
+            throw new Exception('Требуется авторизация');
+        }
+
+        $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+        if (!$id) {
+            throw new Exception('Некорректный ID');
+        }
+
+        // Добавляем ID в массив, если его еще нет
+        if (!in_array($id, $_SESSION['selected_pvk'])) {
+            $_SESSION['selected_pvk'][] = $id;
+        }
+
+        echo json_encode([
+            'status' => 'success',
+            'selected' => $_SESSION['selected_pvk']
+        ]);
+    } catch (Exception $e) {
+        echo json_encode([
+            'status' => 'error',
+            'message' => $e->getMessage()
+        ]);
+    }
+    exit(); // Важно: завершаем выполнение после AJAX
+}
+
+// Основной код ТОЛЬКО для POST без action
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['action'])) {
     $search_query = $_POST['query'];
     $db_config = [
@@ -98,16 +144,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['action'])) {
         foreach ($results as $record) {
             $id = htmlspecialchars($record['id']);
             $desc = htmlspecialchars($record['description']);
-            $is_selected = in_array($id, $_SESSION['selected_pvk']) ? 'selected' : ''; //можно трогать
+            $is_selected = in_array($id, $selected_pvk) ? 'selected' : 'not_selected';
 
             echo "<tr>
-            <td>{$id}</td> //не трогать
-            <td>{$desc}</td> //не трогать
-            <td> //не трогать
-                <button class='submit-btn {$is_selected}'
+            <td>{$id}</td>
+            <td>{$desc}</td>
+            <td>
+                <button id = 'btn_pick_prof{$id}' class='{$is_selected}' 
                         data-id='{$id}'
                         style='cursor:pointer'>
-                    " . ($is_selected ? '✓ Установлено' : 'Установить') . " /// ВОТ ЭТА КНОПКА ПО ИДЕЕ ДОЛЖНА МЕНЯТЬ ЦВЕТ и при ее нажатии должен исполняться запрос к дб из expertRights\rateProfession.php
+                    " . ($is_selected == 'selected' ? 'Установлено✓' : 'Установить') . "
                 </button>
             </td>
           </tr>";

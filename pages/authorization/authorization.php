@@ -49,7 +49,7 @@ if ($connection->connect_error) {
                 <div class="message">
 
                     <p>Вы вошли в аккаунт <b><?php echo $username ?></b></p>
-                    <a href="https://group667.ru/index.php"><button>Домой</button></a>
+                    <a href="https://group667.online/index.php"><button>Домой</button></a>
                 </div>
             <?php
                 $sql = "SELECT `role` FROM `users` WHERE `username` = '$username'";
@@ -65,7 +65,7 @@ if ($connection->connect_error) {
             ?>
                 <div class="message">
                     <p>Поверьте имя пользователя или пароль!</p>
-                    <a href="https://group667.ru/pages/authorization/authorization.html"><button>Назад</button></a>
+                    <a href="https://group667.online/pages/authorization/authorization.html"><button>Назад</button></a>
                 </div>
             <?php
             }
@@ -73,7 +73,7 @@ if ($connection->connect_error) {
             ?>
             <div class="message">
                 <p>Проверьте имя пользователя или пароль!</p>
-                <a href="https://group667.ru/pages/authorization/authorization.html"><button>Назад</button></a>
+                <a href="https://group667.online/pages/authorization/authorization.html"><button>Назад</button></a>
             </div>
     <?php
         }

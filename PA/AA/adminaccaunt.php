@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <?php include '../../scripts/isRegistrated.php' ?>
+    <?php include "../../scripts/isRegistrated.php"; ?>
     <!-- Выключение файла с php функиями -->
     <div class="header_container" id="header">
         <!-- Логотип в шапке -->
@@ -22,23 +22,36 @@
     </div>
 
     <h3>Актуальные данные</h3>
-    <p>Аккаунт: <?php echo getUsername() . "</br>" ?></p>
-    <p>Тип аккаунта: <?php echo getUserRole() . "</br>" ?></p>
+    <p>Аккаунт: <?php echo getUsername() . "</br>"; ?></p>
+    <p>Тип аккаунта: <?php echo getUserRole() . "</br>"; ?></p>
 
 
     <p>Электронная почта:
         <?php
-        include '../../personalaccauntlogic/getEmail.php';
+        include "../../personalaccauntlogic/getEmail.php";
         echo getEmail() . "</br>";
         ?>
     </p>
     <p>Имя и фамилия:
         <?php
-
-        include '../../personalaccauntlogic/getName.php';
-        include '../../personalaccauntlogic/getSurname.php';
+        include "../../personalaccauntlogic/getName.php";
+        include "../../personalaccauntlogic/getSurname.php";
         echo getName() . " " . getSurname();
+        ?>
+    </p>
 
+    <!-- Male/Female -->
+    <p>Пол:
+        <?php
+        include "../../personalaccauntlogic/getSex.php";
+        echo getSex();
+        ?>
+    </p>
+
+    <p>Возраст:
+        <?php
+        include "../../personalaccauntlogic/getAge.php";
+        echo getAge();
         ?>
     </p>
 
@@ -50,11 +63,19 @@
     <div class="forms">
         <form action="../../personalaccauntlogic/setNSE.php" method="post">
 
-            <input type="text" id="name" name="name" placeholder="<?php echo getName() ?>">
-            <input type="text" id="surname" name="surname" placeholder="<?php echo getSurname() ?>">
+            <input type="text" id="name" name="name" placeholder="<?php echo getName(); ?>">
+            <input type="text" id="surname" name="surname" placeholder="<?php echo getSurname(); ?>">
+
+            <p>Пол</p>
+            <input  type="text" id="sex" name="sex" placeholder="<?php echo getSex() !==
+                null && getSex() !== ""
+                ? getSex()
+                : "Введите пол"; ?>" >
+            <p>Возраст</p>
+            <input type="text" id="age" name="age" placeholder="<?php echo getAge(); ?>" >
 
             <p>Электронная почта</p>
-            <input type="text" id="email" name="email" placeholder="<?php echo getEmail() ?>">
+            <input type="text" id="email" name="email" placeholder="<?php echo getEmail(); ?>">
             <p id="email_error">Неверно введена почта!</p>
             <div>
                 <button id="afterEmail" type="submit">подтвердить</button>
@@ -77,6 +98,11 @@
     <h3>Перейти в панель администратора</h3>
     <form action="../../PA/AA/adminpanel.php" method="post">
         <button type="submit">перейти в панель администратора</button>
+    </form>
+
+    <h3>Посмотреть свои результаты тестов</h3>
+    <form action="testresults.php" method="post">
+        <button type="submit">Результаты тестов</button>
     </form>
 
     <h3>Выйти из аккаунта</h3>

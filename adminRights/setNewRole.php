@@ -19,9 +19,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $connection->prepare($sql);
         $stmt->bind_param("s", $role);
         $stmt->execute();
-        header('Location:https://group667.ru/PA/AA/adminpanel.php');
+        header('Location:https://group667.online/PA/AA/adminpanel.php');
     } else {
-        header('Refresh: 3;https://group667.ru/PA/AA/adminpanel.php');
+        header('Refresh: 3;https://group667.online/PA/AA/adminpanel.php');
         echo "такой роли или пользователя не существует";
     }
 }

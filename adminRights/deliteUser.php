@@ -19,5 +19,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("s", $id);
     $stmt->execute();
     $connection->query("SET FOREIGN_KEY_CHECKS = 1");
-    header('Location:https://group667.ru/PA/AA/adminpanel.php');
+    header('Location:https://group667.online/PA/AA/adminpanel.php');
 }

@@ -20,7 +20,7 @@ include '../scripts/isRegistrated.php';
 <body>
     <div class="container">
         <div class="header_container" id="header">
-            <a href="https://group667.ru/" onclick="location.href='../index.php';" class="icon_button"></a>
+            <a href="https://group667.online/" onclick="location.href='../index.php';" class="icon_button"></a>
             <div class="header-title_container">
                 <div class="header_title">
                     <h2>Group 667</h2>

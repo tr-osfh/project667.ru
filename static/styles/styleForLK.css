@@ -187,3 +187,72 @@ textarea:focus {
 #sortable-list>li.dragging {
     background-color: white; /* Цвет при перетаскивании */
 }
+
+#loading{
+    display: none;
+}
+
+#log_logo{
+    max-width: 30px;
+    margin-top: 10px;
+}
+
+#end_rate{
+    margin-top: 10px;
+}
+
+#search_input{
+    width: 200px;
+    margin-right: 5px;
+}
+
+.not_selected{
+    width: 150px;
+    background-color: red;
+    content: "Установить";
+}
+
+.selected{
+    width: 150px;
+    background-color: gray;
+    content: "Установлено✓";
+}
+
+#many_pvk {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный черный фон */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Окно поверх всего */
+}
+
+#many_pvk_content{
+    animation: fadeIn 0.5s ease;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    text-align: center;
+    position: fixed; /* Фиксированное позиционирование */
+    top: 50%; /* Сдвигаем на 50% от верха */
+    left: 50%; /* Сдвигаем на 50% от левого края */
+    transform: translate(-50%, -50%); /* Центрируем */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+

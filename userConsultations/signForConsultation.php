@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ssss", $id, $user_name, $email, $consultation_id);
 
     if ($stmt->execute()) {
-        header('Location: https://group667.ru/pages/consultationForm.php');
+        header('Location: https://group667.online/pages/consultationForm.php');
         exit();
     } else {
         echo "Error: " . $stmt->error;

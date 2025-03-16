@@ -24,5 +24,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $consultant_name = getName() . ' ' . getSurname();
     $stmt->bind_param("sss", $data_time, $id, $consultant_name);
     $stmt->execute();
-    header('Location:https://group667.ru/PA/CA/consultantpanel.php');
+    header('Location:https://group667.online/PA/CA/consultantpanel.php');
 }

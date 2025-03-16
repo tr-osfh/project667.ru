@@ -39,7 +39,7 @@ if ($connection->connect_error) {
         if ($result->num_rows > 0) {
     ?>
             <p>Такой пользователь уже существует</p>
-            <a href="https://group667.ru/index.php"><button>Домой</button></a>
+            <a href="https://group667.online/index.php"><button>Домой</button></a>
             <?php
             exit();
         } else {
@@ -50,7 +50,7 @@ if ($connection->connect_error) {
                 if ($stmt->execute() === TRUE) {
             ?>
                     <p>Регистрация завершена</p>
-                    <a href="https://group667.ru/index.php"><button>Домой</button></a>
+                    <a href="https://group667.online/index.php"><button>Домой</button></a>
                 <?php
                     exit();
                 } else {
@@ -59,7 +59,7 @@ if ($connection->connect_error) {
             } else {
                 ?>
                 <p>Пароли не совпадают</p>
-                <a href="https://group667.ru/index.php"><button>Домой</button></a>
+                <a href="https://group667.online/index.php"><button>Домой</button></a>
     <?php
                 exit();
             }

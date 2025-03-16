@@ -15,7 +15,7 @@
 <body>
     <div class="header_container" id="header">
         <!-- Логотип в шапке -->
-        <a href="https://group667.ru/index.php" onclick="location.href='mainpage.html';" class="icon_button"></a>
+        <a href="https://group667.online/index.php" onclick="location.href='mainpage.html';" class="icon_button"></a>
         <h1>Панель эксперта</h1>
     </div>
 

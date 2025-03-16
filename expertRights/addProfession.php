@@ -21,5 +21,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $connection->prepare($sql);
     $stmt->bind_param("sss", $profession_name, $descriprion, $ph_link);
     $stmt->execute();
-    header('Location:https://group667.ru/PA/EA/expertpanel.php');
+    header('Location:https://group667.online/PA/EA/expertpanel.php');
 }
