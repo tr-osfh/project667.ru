@@ -1,5 +1,6 @@
 <?php 
 session_start();
+$_SESSION['tableName'] = 'test_ruletka';
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -41,11 +42,13 @@ session_start();
                 <p>Точность: <span id="accuracy">0</span></p>
                 <p>Ошибки (пропуски): <span id="misses">0</span></p>
                 <p>Ошибки (неверные): <span id="wrong">0</span></p>
+                <p>Стандартное отклонение: <span id="std-dev">0</span> мс</p>
             </div>
             <button id="start"><?php include "../scripts/check_attemts/ruletka_attemts.php" ?></button>
-            <div id="old_res"><?php include "../scripts/testRuletkaRes.php" ?></div>
+            <div id="old_res"><?php include "../scripts/results_after_test/testRuletkaRes.php" ?></div>
+            <div id="norm"><?php include "../scripts/test_norm_user.php"?></div>
+            <div id="dinamic"><?php include "../scripts/test_dynamic_user.php"?></div>
         </div>
-        <script src="../scripts/test_ruletka.js"></script>
-    
+        <script src="../scripts/test_scripts/test_ruletka.js"></script>
     </body>
 </html>

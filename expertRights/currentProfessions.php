@@ -33,6 +33,12 @@ if ($stmt = $connection->prepare($sql)) {
                 echo '      <button type="submit">Оценить</button>';
                 echo '  </form>';
                 echo '</div> ';
+                echo '<div class="forms">';
+                echo '  <form action="../EA/selectTests.php" method="post">';
+                echo '      <input type="hidden" name="id" id="id" value= "' . $line['id'] . '">';
+                echo '      <button type="submit" class="delit">Необходимые тесты</button>';
+                echo '  </form>';
+                echo '</div> ';
                 echo "</td>";
                 echo "</tr>";
             }

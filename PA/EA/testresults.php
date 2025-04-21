@@ -77,6 +77,12 @@ session_start();
         include "../../scripts/get_testres_ea.php";
         ?></div>
     
+    <div style="text-align: left;">
+        <form action="../../redirectPages/goPA.php" method="post">
+            <button type="submit">вернуться в личный кабинет</button>
+        </form>
+    </div>
+    
 
     <script>
     const arrowOc = document.getElementById('arrow_oc');
@@ -89,6 +95,7 @@ session_start();
     const testSoundDiv = document.getElementById('chet_sound_div');
     const arrowView = document.getElementById('arrow_chet_view');
     const testViewDiv = document.getElementById('chet_view_div');
+    const username = document.getElementsByClassName('username')
 
     function openList(testDiv, arrow) {
         testDiv.style.display = 'block';
@@ -141,6 +148,21 @@ session_start();
             closeList(testViewDiv, arrowView);
         }
     });
+
+    for (let i = 0; i < username.length; i++) {
+        username[i].addEventListener('click', function() {
+            var username = this.textContent;
+            var tableName = this.getAttribute('table-id');
+            window.location.href = 'person_res.php?username=' + encodeURIComponent(username) + '&tableName=' + encodeURIComponent(tableName);
+        });
+    };
+
+    for (let i = 0; i < username.length; i++) {
+    username[i].addEventListener('mouseover', () => {
+        username[i].style.cursor = 'pointer';
+    });
+
+};
 
 </script>
 </body>

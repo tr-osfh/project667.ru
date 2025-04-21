@@ -1,5 +1,6 @@
 <?php 
 session_start();
+$_SESSION['tableName'] = 'test_chet_sound';
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -32,7 +33,7 @@ session_start();
   </div>
   <div id="task">
     <p id="numbers">Нажми "Старт" для начала теста</p>
-    <progress id="progress-bar" value="0" max="10"></progress> <!-- max соответствует questionsCount -->
+    <progress id="progress-bar" value="0" max="10"></progress>
   </div>
   <div class="buttons">
     <button id="even" class="choice-btn" disabled>Чёт</button>
@@ -42,11 +43,14 @@ session_start();
     <p>Среднее время реакции: <span id="avg-time">0</span> мс</p>
     <p>Количество верных ответов: <span id="accuracy">0</span></p>
     <p>Ошибки: <span id="errors">0</span></p>
+    <p>Стандартное отклонение: <span id="std-dev">0</span> мс</p>
   </div>
   <button id="start"><?php include "../scripts/check_attemts/chet_sound_attemts.php" ?></button>
-  <div id="old_res"><?php include "../scripts/testChetSoundRes.php" ?></div>
+  <div id="old_res"><?php include "../scripts/results_after_test/testChetSoundRes.php" ?></div>
+  <div id="norm"><?php include "../scripts/test_norm_user.php"?></div>
+  <div id="dinamic"><?php include "../scripts/test_dynamic_user.php"?></div>
 </div>
 
-<script src="../scripts/chet_sound_test.js"></script>
+<script src="../scripts/test_scripts/chet_sound_test.js"></script>
 </body>
 </html>

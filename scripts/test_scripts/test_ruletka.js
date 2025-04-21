@@ -20,7 +20,16 @@ let wrong = 0;
 let testRunning = false;
 let wheelAngle = 0;
 let timeoutId = null;
-let lastTime = null; // Добавляем переменную для отслеживания времени
+let lastTime = null;
+
+// Проверка на приватный режим
+function isPrivateMode() {
+    const path = window.location.pathname;
+    const query = window.location.search;
+    return path.includes('private') || query.includes('mode=private');
+}
+
+const isPrivate = isPrivateMode();
 
 // Экран загрузки
 async function data_load() {
@@ -28,56 +37,77 @@ async function data_load() {
     element.style.opacity = '1';
     element.style.display = 'flex';
     
-    // Имитация асинхронной операции
     await new Promise(resolve => setTimeout(resolve, 5000));
     
     element.style.opacity = '0';
     await new Promise(resolve => setTimeout(resolve, 1000));
     element.style.display = 'none';
-  }
-  
-  // Сброс результатов перед запуском теста
-  function dropResults() {
+}
+
+// Сброс результатов перед запуском теста
+function dropResults() {
     reactionTimes = [];
     correct = 0;
-    errors = 0;
+    misses = 0; // Исправляем "errors" на "misses"
+    wrong = 0;  // Добавляем сброс для wrong
     avgTimeDisplay.textContent = '0';
     accuracyDisplay.textContent = '0';
-    errorsDisplay.textContent = '0';
-    progressBar.value = 0; // Сбрасываем прогресс-бар
-  }
-  
-  // Функция для обновления таблицы результатов в футере
-  function updateFooter() {
+    missesDisplay.textContent = '0'; // Исправляем "errorsDisplay" на "missesDisplay"
+    wrongDisplay.textContent = '0';
+    // progressBar.value = 0; // Удаляем, так как progressBar не определён
+}
+
+// Функция для расчёта стандартного отклонения
+function calculateStandardDeviation(times) {
+    if (times.length <= 1) return 0;
+    const mean = times.reduce((a, b) => a + b, 0) / times.length;
+    const squaredDiffs = times.reduce((sum, time) => sum + Math.pow(time - mean, 2), 0);
+    const stdDev = Math.sqrt(squaredDiffs / (times.length - 1));
+    return Math.round(stdDev);
+}
+
+// Функция для обновления таблицы результатов в футере
+function updateFooter() {
     let now = new Date();
     let year = now.getFullYear();
     let month = String(now.getMonth() + 1).padStart(2, '0');
     let day = String(now.getDate()).padStart(2, '0'); 
     let dbFormattedDate = `${year}-${month}-${day}`;
+    
+    // Отладка: выводим reactionTimes и std_dev
+    console.log("reactionTimes:", reactionTimes);
+    const stdDev = calculateStandardDeviation(reactionTimes);
+    console.log("std_dev:", stdDev);
+
     let data = {
         table_name: 'test_ruletka',
-        avg_time: reactionTimes.reduce((a, b) => a + b, 0) / reactionTimes.length,
+        avg_time: reactionTimes.length > 0 ? reactionTimes.reduce((a, b) => a + b, 0) / reactionTimes.length : 0,
         accuracy: correct,
         misses: misses,
+        std_dev: stdDev, // Добавляем стандартное отклонение
         date: dbFormattedDate,
         test: 'test_ruletka.php'
     };
     const urlEncodedData = new URLSearchParams(data).toString();
     try {
-        fetch(`https://group667.online/scripts/addTestRes.php`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: urlEncodedData
-        });
+        if (!isPrivate) {
+            fetch(`https://group667.online/scripts/addTestRes.php`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: urlEncodedData
+            });
+        }
     } catch (error) {
         console.error('Ошибка:', error);
     }
     data_load().then(() => {
-        window.location.href = "https://group667.online/tests/test_ruletka.php";
+        if (!isPrivate) {
+            window.location.href = "https://group667.online/tests/test_ruletka.php";
+        }
     });
-  }
+}
 
 // Адаптивный размер canvas
 function resizeCanvas() {
@@ -153,12 +183,12 @@ function drawWheel() {
 function spinWheel(timestamp) {
     if (!testRunning) return;
 
-    if (!lastTime) lastTime = timestamp; // Устанавливаем начальное время
-    const deltaTime = (timestamp - lastTime) / 1000; // Разница во времени в секундах
+    if (!lastTime) lastTime = timestamp;
+    const deltaTime = (timestamp - lastTime) / 1000;
     lastTime = timestamp;
 
-    const angularSpeed = 1.2; // Угловая скорость в радианах в секунду (можно настроить)
-    wheelAngle += angularSpeed * deltaTime; // Увеличиваем угол пропорционально времени
+    const angularSpeed = 1.2;
+    wheelAngle += angularSpeed * deltaTime;
 
     drawWheel();
     requestAnimationFrame(spinWheel);
@@ -198,25 +228,14 @@ function highlightRandomButton() {
         }
     }, 2000);
 }
+
 function getCurrentColorUnderArrow() {
-    // Положение стрелки — 3π/2 (270 градусов)
     const arrowAngle = 3 * Math.PI / 2;
-
-    // Учитываем вращение колеса по часовой стрелке
     const effectiveAngle = (arrowAngle - wheelAngle) % (2 * Math.PI);
-
-    // Приводим угол к диапазону [0, 2π)
     const normalizedAngle = (effectiveAngle + 2 * Math.PI) % (2 * Math.PI);
-
-    // Вычисляем индекс кружка (всего 12 кружков)
-    const totalCircles = 12;
     const fraction = (normalizedAngle / (2 * Math.PI)) * totalCircles;
     let circleIndex = Math.round(fraction) % totalCircles;
-
-    // Если индекс равен totalCircles, сбрасываем на 0
     if (circleIndex === totalCircles) circleIndex = 0;
-
-    // Возвращаем цвет кружка
     return circleColors[circleIndex];
 }
 
@@ -225,8 +244,8 @@ startBtn.addEventListener('click', () => {
         testRunning = true;
         startBtn.textContent = 'Тест идёт...';
         resetStats();
-        lastTime = null; // Сбрасываем время при старте
-        requestAnimationFrame(spinWheel); // Запускаем анимацию
+        lastTime = null;
+        requestAnimationFrame(spinWheel);
         nextRound();
     } 
 });
@@ -269,11 +288,15 @@ function nextRound() {
     }
 }
 
+
 function updateAvgTime() {
     const avgTime = reactionTimes.length > 0 
         ? reactionTimes.reduce((a, b) => a + b, 0) / reactionTimes.length 
         : 0;
     avgTimeDisplay.textContent = Math.round(avgTime);
+
+    const stdDev = calculateStandardDeviation(reactionTimes);
+    document.getElementById('std-dev').textContent = stdDev; // Предполагается, что есть элемент с id="std-dev"
 }
 
 function endTest() {

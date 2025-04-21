@@ -15,7 +15,7 @@ if ($connection->connect_error) {
 include "../../expertRights/getProfessionId.php";
 include "../../expertRights/getProfessionName.php";
 
-$sql = "SELECT `id` FROM `profession_data` WHERE `expertID` = ? AND `profid` = ?";
+$sql = "SELECT `id` FROM `selectedPVK` WHERE `expert_id` = ? AND `profession_id` = ?";
 
 if ($stmt = $connection->prepare($sql)) {
     $stmt->bind_param("ss", $_SESSION['id'], $id);
@@ -55,16 +55,16 @@ if ($stmt = $connection->prepare($sql)) {
     </form>
     <div id="loading">
         <!-- <p>Загрузка</p> -->
-        <img id = 'log_logo' src="https://icons8.com/preloaders/preloaders/22/%D0%A2%D0%B0%D1%8E%D1%89%D0%B8%D0%B5%20%D0%BA%D1%80%D1%83%D0%B3%D0%B8.gif">
+        <img id='log_logo' src="https://icons8.com/preloaders/preloaders/22/%D0%A2%D0%B0%D1%8E%D1%89%D0%B8%D0%B5%20%D0%BA%D1%80%D1%83%D0%B3%D0%B8.gif">
     </div>
     <form action="../../expertRights/rateProfession.php" method="post">
-        <button id = 'end_rate' type="submit">Закончить оценку</button>
+        <button id='end_rate' type="submit">Закончить оценку</button>
         <p id="error" style="display: none; color: red;">Выбрано недостаточно ПВК</p>
     </form>
     <div id="all_pvk"><?php include "../../expertRights/allPvk.php" ?></div>
     <div id="result"></div> <!-- Элемент для вывода результатов -->
 
-    
+
 
     <script>
         const loading = document.getElementById('loading');
@@ -106,7 +106,7 @@ if ($stmt = $connection->prepare($sql)) {
 
         document.addEventListener('click', function(event) {
             if (event.target && reg.test(event.target.id)) {
-                if (list.length >= 10 && (event.target.classList.contains('not_selected'))){
+                if (list.length >= 10 && (event.target.classList.contains('not_selected'))) {
                     const element = document.getElementById("many_pvk");
                     element.style.opacity = '1';
                     element.style.display = 'flex';
@@ -114,13 +114,14 @@ if ($stmt = $connection->prepare($sql)) {
                         element.style.opacity = '0';
                         setTimeout(function() {
                             element.style.display = 'none';
-                        }, 1000); 
+                        }, 1000);
                     }, 2000);
-                } if (list.length < 10 || event.target.classList.contains('selected')){
-                    const btn_pick_prof = document.querySelectorAll('#'+event.target.id);
+                }
+                if (list.length < 10 || event.target.classList.contains('selected')) {
+                    const btn_pick_prof = document.querySelectorAll('#' + event.target.id);
                     console.log(event.target.id);
                     const pvk_id = event.target.id.replace(/\D+/g, '')
-                    if (event.target.classList.contains('selected')){
+                    if (event.target.classList.contains('selected')) {
                         btn_pick_prof.forEach(element => {
                             element.style.backgroundColor = "red";
                             element.textContent = "Установить";
@@ -129,7 +130,7 @@ if ($stmt = $connection->prepare($sql)) {
                         });
                         list = list.filter(item => item !== pvk_id);
                         console.log(list);
-                    }else if (event.target.classList.contains('not_selected')){
+                    } else if (event.target.classList.contains('not_selected')) {
                         btn_pick_prof.forEach(element => {
                             element.style.backgroundColor = "grey";
                             element.textContent = "Установлено✓";
@@ -139,22 +140,22 @@ if ($stmt = $connection->prepare($sql)) {
                         list.push(pvk_id);
                         console.log(list);
                     }
-                }else {
-                   console.log('ЧЗХ');
+                } else {
+                    console.log('ЧЗХ');
                 }
             }
         });
 
         document.getElementById('end_rate').addEventListener('click', function(event) {
-            event.preventDefault(); 
+            event.preventDefault();
             fetch('../../expertRights/rateProfession.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    body: '' 
+                    body: ''
                 })
-                .then(response => response.text()) 
+                .then(response => response.text())
                 .catch(error => {
                     console.error('Ошибка при выполнении запроса:', error);
                 });
@@ -173,29 +174,27 @@ if ($stmt = $connection->prepare($sql)) {
             }
         });
 
-        end_rate.addEventListener('click', function(event){
-            if (list.length < 5){ 
+        end_rate.addEventListener('click', function(event) {
+            if (list.length < 5) {
                 error.style.display = 'block';
-                setTimeout(function() { 
+                setTimeout(function() {
                     error.style.display = 'none';
                 }, 5000);
-                
+
             } else {
                 fetch('../../selectedPVK.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: `pvk_id=${JSON.stringify(list)}&profession_id=${profession_id}`
-                })
-                .then(response => response.text()) 
-                .catch(error => {
-                    console.error('Ошибка при выполнении запроса:', error);
-                });
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: `pvk_id=${JSON.stringify(list)}&profession_id=${profession_id}`
+                    })
+                    .then(response => response.text())
+                    .catch(error => {
+                        console.error('Ошибка при выполнении запроса:', error);
+                    });
                 window.location.replace("https://group667.online/PA/EA/expertpanel.php");
             }
         });
-                
-
     </script>
 </body>

@@ -16,7 +16,7 @@ function isFemale()
     $sql = "SELECT sex FROM user_data WHERE user_id = $id";
     $res = $connection->query($sql)->fetch_assoc()["sex"];
     if ($res == 'female'){
-        return 'selected';
+        return 'sex_selected';
     } else{
         return '';
     }

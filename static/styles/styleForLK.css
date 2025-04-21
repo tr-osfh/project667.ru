@@ -126,7 +126,7 @@ h1{
     height: 70px;
 }
 
-#email_error, #password_error {
+#email_error, #password_error, #age_error {
     color: red;
     display: none;
 }
@@ -280,3 +280,8 @@ textarea:focus {
 .sex_selected{
     background-color: gray;
 }
+
+#man_btn{
+    margin-right: 5px;
+}
+

@@ -34,6 +34,8 @@ session_start();
         <div id="test_oc_div" style="display: none;"><?php 
         $_SESSION['tableName'] = 'test_one_color';
         include "../../scripts/get_testres_ua.php";
+        include "../../scripts/test_dynamic_user.php";
+        include "../../scripts/test_norm_user.php";
         ?></div>
 
         
@@ -44,6 +46,8 @@ session_start();
         <div id="test_os_div" style="display: none;"><?php
         $_SESSION['tableName'] = 'test_one_sound';
         include "../../scripts/get_testres_ua.php";
+        include "../../scripts/test_dynamic_user.php";
+        include "../../scripts/test_norm_user.php";
         ?>
         </div>
 
@@ -56,6 +60,8 @@ session_start();
         <?php
         $_SESSION['tableName'] = 'test_ruletka';
         include "../../scripts/get_testres_ua.php";
+        include "../../scripts/test_dynamic_user.php";
+        include "../../scripts/test_norm_user.php";
         ?></div>
 
 
@@ -66,6 +72,8 @@ session_start();
 <div id="chet_sound_div" style="display: none;"><?php
         $_SESSION['tableName'] = 'test_chet_sound';
         include "../../scripts/get_testres_ua.php";
+        include "../../scripts/test_dynamic_user.php";
+        include "../../scripts/test_norm_user.php";
         ?></div>
 
 <div class="test_head">
@@ -74,7 +82,9 @@ session_start();
 </div>
 <div id="chet_view_div" style="display: none;"><?php
         $_SESSION['tableName'] = 'test_chet_view';
-        include "../../scripts/get_testres_ea.php";
+        include "../../scripts/get_testres_ua.php";
+        include "../../scripts/test_dynamic_user.php";
+        include "../../scripts/test_norm_user.php";
         ?></div>
     
 

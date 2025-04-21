@@ -1,5 +1,9 @@
 <?php 
 session_start();
+$_SESSION['tableName'] = 'test_one_color';
+error_reporting(E_ALL); // Указываем, какие ошибки отображать (E_ALL — все ошибки)
+ini_set('display_errors', 1); // Включаем отображение ошибок на экране
+ini_set('display_startup_errors', 1);
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -41,8 +45,10 @@ session_start();
                 <p>Ошибки: <span id="misses">0</span></p>
             </div>
             <button id="start"><?php include "../scripts/check_attemts/one_color_attemts.php" ?></button>
-            <div id="old_res"><?php include "../scripts/testOneColorRes.php" ?></div>
+            <div id="old_res"><?php include "../scripts/results_after_test/testOneColorRes.php" ?></div>
+            <div id="norm"><?php include "../scripts/test_norm_user.php"?></div>
+            <div id="dinamic"><?php include "../scripts/test_dynamic_user.php"?></div>
         </div>
-        <script src="../scripts/test_onecolor.js"></script>
+        <script src="../scripts/test_scripts/test_onecolor.js"></script>
     </body>
 </html>

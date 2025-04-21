@@ -5,23 +5,20 @@ body {
     padding: 0;
     font-optical-sizing: auto;
     font-weight: 400;
-    background-color: white;
-    width: 700px;
-    border-radius: 15px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 30px;
-    padding-top: 0px;
     background-color: Snow;
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 30px 30px 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     color: rgb(46, 46, 46);
 }
 
 button:hover {
     background-color: #dd3434;
-} 
+}
 
-a{
+a {
     text-decoration: none;
     color: white;
 }
@@ -35,13 +32,12 @@ button {
     font-weight: bold;
     text-decoration: none;
     border-radius: 5px;
-    
     transition: background 0.1s linear;
 }
 
 .container {
     width: 90%;
-    max-width: 800px; /* Оставляем компактную ширину */
+    max-width: 800px;
     margin: 1rem auto;
     padding: 0.5rem;
     text-align: center;
@@ -51,21 +47,21 @@ button {
 .header_container {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Как было изначально */
+    justify-content: space-between;
     width: 100%;
-    height: 100px; /* Фиксированная высота как в исходнике */
+    height: 100px;
     border-bottom: 0.1rem solid black;
 }
 
 .header_icon {
-    width: 150px; /* Восстанавливаем размер логотипа */
+    width: 150px;
     height: auto;
 }
 
 .header-title_container {
     flex: 1;
     text-align: left;
-    margin-left: 20px; /* Как было изначально */
+    margin-left: 20px;
 }
 
 .header_container h2 {
@@ -98,14 +94,14 @@ button {
 
 .icon_button:active {
     transform: scale(0.95);
-} 
+}
 
 #wheel {
     display: block;
-    width: 100%; /* Адаптивная ширина */
-    max-width: 400px; /* Максимальный размер */
-    height: auto; /* Пропорциональная высота */
-    margin: 0 auto; /* Центрируем колесо */
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    margin: 0 auto;
     border-radius: 50%;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
@@ -140,10 +136,12 @@ button {
     background-color: #4682B4 !important;
     box-shadow: 0 0 15px rgba(70, 130, 180, 0.7);
 }
+
 .color-btn.active-2E8B57 {
     background-color: #2E8B57 !important;
     box-shadow: 0 0 15px rgba(46, 139, 87, 0.7);
 }
+
 .color-btn.active-B30000 {
     background-color: #B30000 !important;
     box-shadow: 0 0 15px rgba(179, 0, 0, 0.7);
@@ -175,10 +173,86 @@ button {
     background-color: #b30000;
 }
 
+/* Стили для модального окна (новое) */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    text-align: center;
+}
+
+.modal-content h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.time-option {
+    padding: 10px 20px;
+    margin: 0.5rem;
+    font-size: 1rem;
+    background-color: #ff0400;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.time-option:hover {
+    background-color: #b30000;
+}
+
+/* Стили для прогресс-бара (новое) */
+.progress-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0.5rem auto;
+    text-align: center;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background-color: #ff0400;
+    transition: width 0.3s ease;
+}
+
+.progress-container span {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.9rem;
+    color: #333;
+}
+
 /* Медиа-запросы для адаптивности */
 @media (max-width: 600px) {
     .header_icon {
-        width: 100px; /* Уменьшаем логотип */
+        width: 100px;
     }
 
     .header-title_container {
@@ -199,7 +273,7 @@ button {
     }
 
     #wheel {
-        max-width: 300px; 
+        max-width: 300px;
     }
 
     .color-btn {
@@ -220,7 +294,7 @@ button {
 
 @media (max-width: 400px) {
     #wheel {
-        max-width: 250px; 
+        max-width: 250px;
     }
 
     .color-btn {
@@ -229,10 +303,7 @@ button {
     }
 }
 
-
-
 /* click_space_btn */
-
 #click_space_btn {
     display: none;
     padding: 10px 30px;
@@ -256,39 +327,30 @@ button {
 
 .circle {
     display: none;
-    width: 100px; 
-    height: 100px; 
+    width: 100px;
+    height: 100px;
     background-color: grey;
-    border-radius: 50%; 
+    border-radius: 50%;
     margin-top: 20px;
     margin-left: 265px;
 }
 
 .circle.active {
-    width: 100px; 
+    width: 100px;
     height: 100px;
-    background-color: #fff; 
-    border-radius: 50%; 
-    box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.8); 
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.8);
     margin-top: 20px;
     margin-left: 265px;
 }
 
-#timer {
-    display: none;
-    font-size: 30px;
-    font-weight: bold;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-
-#sound_img{
+#sound_img {
     width: 80px;
     margin-left: 270px;
 }
 
-#old_res_title{
+#res_title {
     text-align: center;
     margin-top: 60px;
     font-size: 30px;
@@ -296,19 +358,19 @@ button {
 }
 
 #loading {
-    display: none; /* Скрыто по умолчанию */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный черный фон */
+    background-color: rgba(0, 0, 0, 0.7);
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Окно поверх всего */
+    z-index: 1000;
 }
 
-#loading_content{
+#loading_content {
     animation: fadeIn 0.5s ease;
     background-color: white;
     padding: 20px;
@@ -316,10 +378,10 @@ button {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     max-width: 400px;
     text-align: center;
-    position: fixed; /* Фиксированное позиционирование */
-    top: 50%; /* Сдвигаем на 50% от верха */
-    left: 50%; /* Сдвигаем на 50% от левого края */
-    transform: translate(-50%, -50%); /* Центрируем */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 @keyframes fadeIn {
@@ -333,3 +395,44 @@ button {
     }
 }
 
+.game_area {
+    max-width: 600px;
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-color: #eee;
+    overflow: hidden;
+    border: 2px solid #333;
+    margin-left: 12px;
+}
+
+#goal {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: crimson;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#target {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: all;
+}
+
+#timer {
+    display: none;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 10px;
+}

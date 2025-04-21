@@ -1,5 +1,6 @@
 <?php 
 session_start();
+$_SESSION['tableName'] = 'test_one_sound';
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -42,8 +43,10 @@ session_start();
                 <p>Ошибки: <span id="misses">0</span></p>
             </div>
             <button id="start"><?php include "../scripts/check_attemts/one_sound_attemts.php" ?></button>
-            <div id="old_res"><?php include "../scripts/testOneSoundRes.php" ?></div>
+            <div id="old_res"><?php include "../scripts/results_after_test/testOneSoundRes.php" ?></div>
+            <div id="norm"><?php include "../scripts/test_norm_user.php"?></div>
+            <div id="dinamic"><?php include "../scripts/test_dynamic_user.php"?></div>
         </div>
-        <script src="../scripts/test_onesound.js"></script>
+        <script src="../scripts/test_scripts/test_onesound.js"></script>
     </body>
 </html>

@@ -16,10 +16,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $profession_name = htmlspecialchars($_POST["profname"]);
     $descriprion = htmlspecialchars($_POST["description"]);
     $ph_link = htmlspecialchars($_POST["photolink"]);
-    $sql = "INSERT INTO `professions` (`profname`, `description`, `photolink`)
-        VALUES (?, ?, ?)";
+    $added = 1;
+    $sql = "INSERT INTO `professions` (`profname`, `description`, `photolink`, `added`)
+        VALUES (?, ?, ?, ?)";
     $stmt = $connection->prepare($sql);
-    $stmt->bind_param("sss", $profession_name, $descriprion, $ph_link);
+    $stmt->bind_param("ssss", $profession_name, $descriprion, $ph_link, $added);
     $stmt->execute();
     header('Location:https://group667.online/PA/EA/expertpanel.php');
 }

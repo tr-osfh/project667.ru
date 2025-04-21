@@ -5,24 +5,30 @@ const accuracyDisplay = document.getElementById('accuracy');
 const missesDisplay = document.getElementById('misses');
 const results = document.getElementById('results');
 const body = document.body;
+const circle = document.getElementById('circle');
 const timerElement = document.getElementById("timer");
-const sound_el = document.getElementById('sound');
-const sound_img = document.getElementById('sound_img');
 
 let startTime = 0;
 let reactionTimes = [];
 let correct = 0;
 let misses = 0;
 let testRunning = false;
-let time_sound = 0;
-let sound_count = 0;
+let time_light = 0;
+let light_count = 0;
 let timeLeft = 120;
 let click = false;
 let secret_code = false;
 let time_test;
-let right = false;
 const timerInterval = setInterval(updateTimer, 1000);
 
+// Проверка для теста в приватном режиме
+function isPrivateMode() {
+    const path = window.location.pathname;
+    const query = window.location.search;
+    return path.includes('private') || query.includes('mode=private');
+}
+
+const isPrivate = isPrivateMode();
 
 async function data_load() {
     const element = document.getElementById("loading");
@@ -35,6 +41,7 @@ async function data_load() {
     element.style.opacity = '0';
     await new Promise(resolve => setTimeout(resolve, 1000));
     element.style.display = 'none';
+    console.log('thinking');
 }
 
 function drop_results(){
@@ -60,8 +67,8 @@ function updateTimer() {
 }
 
 function click_space(){
-    if (right && sound_count >= correct) {
-        reactionTimes.push(Date.now()-time_sound);
+    if (circle.classList.contains('active') && light_count >= correct) {
+        reactionTimes.push(Date.now()-time_light);
         correct ++;
         const avgTime = reactionTimes.reduce((a, b) => a + b, 0) / reactionTimes.length;
         avgTimeDisplay.textContent = Math.round(avgTime);
@@ -73,18 +80,21 @@ function click_space(){
     console.log(reactionTimes);
 }
 
-function sound() {
+function light() {
     const randomInteger = Math.floor(Math.random() * (4000 - 1500 + 1)) + 1500; 
+    const randomInteger2 = Math.floor(Math.random() * (1000 - 500 + 1)) + 500; 
 
     setTimeout(() => {
-        right = true;
-        sound_el.play();
-        time_sound = Date.now();
-        sound_count ++
+        circle.classList.add('active');
+        console.log(`Класс 'active' + через ${randomInteger} мс`);
+        time_light = Date.now();
+        light_count ++
         setTimeout(() => {
+            circle.classList.remove('active');
+            console.log(`Класс 'active' - через ${randomInteger2} мс`);
             const elapsedTime = Date.now() - startTime;
             if (elapsedTime < time_test) {
-                sound();
+                light();
             } else {
                 testRunning = false; 
                 startBtn.textContent = 'Выйти';
@@ -95,8 +105,7 @@ function sound() {
                 missesDisplay.textContent = misses;
             } 
             click = false;
-            right = false;
-        }, 500);
+        }, randomInteger2);
     }, randomInteger);
 }
 
@@ -104,7 +113,7 @@ startBtn.addEventListener('click', () => {
     if (startBtn.textContent == 'Выйти'){
         startBtn.textContent = 'Пройти ещё раз';
         btn.style.display = 'none';
-        sound_img.style.display = 'none';
+        circle.style.display = 'none';
         body.style.background = 'linear-gradient(135deg, #f0f4f8, #ffffff)';
         results.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
         results.style.color = '#333';
@@ -114,16 +123,17 @@ startBtn.addEventListener('click', () => {
         let day = String(now.getDate()).padStart(2, '0'); 
         let dbFormattedDate = `${year}-${month}-${day}`;
         let data = {
-            table_name: 'test_one_sound',
+            table_name: 'test_one_color',
             avg_time: reactionTimes.reduce((a, b) => a + b, 0) / reactionTimes.length,
             accuracy: correct,
             misses: misses,
             date: dbFormattedDate,
-            test: 'test_one_sound.php'
+            test: 'test_one_color.php'
         };
         console.log(data);
         const urlEncodedData = new URLSearchParams(data).toString();
         try {
+            if (!isPrivate) {
             fetch(`https://group667.online/scripts/addTestRes.php`, {
                 method: 'POST',
                 headers: {
@@ -131,13 +141,15 @@ startBtn.addEventListener('click', () => {
                 },
                 body: urlEncodedData
             });
+        }
         } catch (error) {
             console.error('Ошибка:', error);
         }
         drop_results();
         data_load().then(() => {
-            window.location.href = "https://group667.online/tests/test_one_sound.php";
-        });
+            if (!isPrivate) {
+            window.location.href = "https://group667.online/tests/test_one_color.php";
+    }});
         
     } else if (!testRunning) {
         if(secret_code){
@@ -152,12 +164,12 @@ startBtn.addEventListener('click', () => {
         testRunning = true;
         startBtn.textContent = 'Тест идёт...';
         btn.style.display = 'block';
-        sound_img.style.display = 'block';
+        circle.style.display = 'block';
         body.style.background = '#333';
         results.style.backgroundColor = '#fcf6f7';
         startBtn.style.backgroundColor = '#B30000';
         startBtn.style.color = 'white';
-        sound();
+        light();
         timerElement.style.display = 'block';
         updateTimer();
     }

@@ -17,7 +17,7 @@
     <!-- Выключение файла с php функиями -->
     <div class="header_container" id="header">
         <!-- Логотип в шапке -->
-        <a href="https://group667.ru/index.php" onclick="location.href='mainpage.html';" class="icon_button"></a>
+        <a href="https://group667.online/index.php" onclick="location.href='mainpage.html';" class="icon_button"></a>
         <h1>Личный кабинет консультанта</h1>
     </div>
 
@@ -63,20 +63,20 @@
             <input type="text" id="name" name="name" placeholder="<?php echo getName(); ?>">
             <input type="text" id="surname" name="surname" placeholder="<?php echo getSurname(); ?>">
 
-            <p>Пол</p>
-            <input  type="text" id="sex" name="sex" placeholder="<?php echo getSex() !==
-                null && getSex() !== ""
-                ? getSex()
-                : "Введите пол"; ?>" >
-
             <p>Возраст</p>
             <input type="text" id="age" name="age" placeholder="<?php echo getAge(); ?>" >
 
             <p>Электронная почта</p>
             <input type="text" id="email" name="email" placeholder="<?php echo getEmail(); ?>">
             <p id="email_error">Неверно введена почта!</p>
+            <p id="age_error">Неподходящий возраст!</p>
             <div>
                 <button id="afterEmail" type="submit">подтвердить</button>
+            </div>
+            <p>Пол</p>
+            <div class="gender_div">
+                <button class=<?php include "../../personalaccauntlogic/isMale.php"; echo isMale();?> class="gender_btn" id="man_btn">Мужчина</button>
+                <button class=<?php include "../../personalaccauntlogic/isFemale.php"; echo isFemale();?> class="genderSet" id="woman_btn">Женщина</button>
             </div>
         </form>
     </div>
@@ -115,6 +115,17 @@
         const password2 = document.getElementById('password2');
         const password_error = document.getElementById('password_error')
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const regex2 = /^\d+$/;
+        const man_btn = document.getElementById('man_btn');
+        const woman_btn = document.getElementById('woman_btn');
+        const age_error = document.getElementById('age_error');
+
+        function checkAge(age_inp) {
+            if (!regex2.test(age_inp)) return false; 
+
+            const age = parseInt(age_inp, 10);
+            return age >= 4 && age <= 106; // Проверка диапазона
+        }
 
         function checkInput(inputElement, expectedValue) {
             if (inputElement.value === expectedValue) {
@@ -167,6 +178,51 @@
             if (password2.value == password.value) {
                 btn2.style.display = 'block';
                 password_error.style.display = 'none';
+            }
+        });
+
+        man_btn.addEventListener('click', function() {
+            fetch(`../../personalaccauntlogic/setGender.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `sex=male`
+                })
+                .then(response => response.text())
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                })
+        });
+
+        woman_btn.addEventListener('click', function() {
+            fetch(`../../personalaccauntlogic/setGender.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `sex=female`
+                })
+                .then(response => response.text())
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                })
+        });
+
+        age_input.addEventListener('blur', function() {
+            if (!checkAge(age_input.value)) {
+                age_error.style.display = 'block';
+                btn.style.display = 'none';
+            } else {
+                age_error.style.display = 'none';
+                btn.style.display = 'block';
+            }
+        });
+
+        age_input.addEventListener('input', function() {
+            if (checkAge(age_input.value)) {
+                age_error.style.display = 'none';
+                btn.style.display = 'block';
             }
         });
     </script>

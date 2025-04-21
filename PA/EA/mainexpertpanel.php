@@ -24,7 +24,6 @@
         <?php include "../../expertRights/maincurrentProfessions copy.php" ?>
     </div>
 
-    <h3>Добавить профессию</h3>
 
     <h3>Выйти из панели главного эксперта</h3>
     <div>

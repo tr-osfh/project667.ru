@@ -13,7 +13,7 @@ session_start();
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
 </head>
 <body>
-    < class="container">
+    <div class="container">
         <div class="header_container" id="header">
             <a href="https://group667.online" onclick="location.href='index.php';" class="icon_button"></a>
             <div class="header-title_container">
@@ -25,26 +25,34 @@ session_start();
                 </div>
             </div>
         </div>
+    </div>  
 
         
         <div class="test_head">
             <h1>Тест на свет</h1>
             <div class="arrowDown" id="arrow_oc"></div>
         </div>
-        <div id="test_oc_div" style="display: none;"><?php 
-        $_SESSION['tableName'] = 'test_one_color';
-        include "../../scripts/get_testres_ua.php";
-        ?></div>
+        <div id="test_oc_div" style="display: none;">
+            <?php 
+            $_SESSION['tableName'] = 'test_one_color';
+            include "../../scripts/get_testres_ua.php";
+            include "../../scripts/test_dynamic_user.php";
+            include "../../scripts/test_norm_user.php";
+            ?>
+        </div>
 
         
         <div class="test_head">
             <h1>Тест на звук</h1>
             <div class="arrowDown" id="arrow_os"></div>
         </div>
-        <div id="test_os_div" style="display: none;"><?php
-        $_SESSION['tableName'] = 'test_one_sound';
-        include "../../scripts/get_testres_ua.php";
-        ?>
+        <div id="test_os_div" style="display: none;">
+            <?php
+            $_SESSION['tableName'] = 'test_one_sound';
+            include "../../scripts/get_testres_ua.php";
+            include "../../scripts/test_dynamic_user.php";
+            include "../../scripts/test_norm_user.php";
+            ?>
         </div>
 
 
@@ -53,29 +61,39 @@ session_start();
             <div class="arrowDown" id="arrow_ruletka"></div>
         </div>
         <div id="test_hc_div" style="display: none;">
-        <?php
-        $_SESSION['tableName'] = 'test_ruletka';
-        include "../../scripts/get_testres_ua.php";
-        ?></div>
+            <?php
+            $_SESSION['tableName'] = 'test_ruletka';
+            include "../../scripts/get_testres_ua.php";
+            include "../../scripts/test_dynamic_user.php";
+            include "../../scripts/test_norm_user.php";
+            ?>
+        </div>
 
 
         <div class="test_head">
-    <h1>Тест на голосовой сигнал</h1>
-    <div class="arrowDown" id="arrow_chet_sound"></div>
-</div>
-<div id="chet_sound_div" style="display: none;"><?php
-        $_SESSION['tableName'] = 'test_chet_sound';
-        include "../../scripts/get_testres_ua.php";
-        ?></div>
+            <h1>Тест на голосовой сигнал</h1>
+            <div class="arrowDown" id="arrow_chet_sound"></div>
+        </div>
+        <div id="chet_sound_div" style="display: none;">
+            <?php
+            $_SESSION['tableName'] = 'test_chet_sound';
+            include "../../scripts/get_testres_ua.php";
+            include "../../scripts/test_dynamic_user.php";
+            include "../../scripts/test_norm_user.php";
+            ?>
+        </div>
 
-            <div class="test_head">
-    <h1>Тест на визуальный сигнал</h1>
-    <div class="arrowDown" id="arrow_chet_view"></div>
-</div>
-<div id="chet_view_div" style="display: none;"><?php
-        $_SESSION['tableName'] = 'test_chet_view';
-        include "../../scripts/get_testres_ua.php";
-        ?></div>
+        <div class="test_head">
+            <h1>Тест на визуальный сигнал</h1>
+            <div class="arrowDown" id="arrow_chet_view"></div>
+        </div>
+        <div id="chet_view_div" style="display: none;"><?php
+            $_SESSION['tableName'] = 'test_chet_view';
+            include "../../scripts/get_testres_ua.php";
+            include "../../scripts/test_dynamic_user.php";
+            include "../../scripts/test_norm_user.php";
+            ?>
+        </div>
     
 
     <script>
@@ -94,13 +112,13 @@ session_start();
         testDiv.style.display = 'block';
         arrow.classList.add('arrowUp');
         arrow.classList.remove('arrowDown');
-    }
+    };
 
     function closeList(testDiv, arrow) {
         testDiv.style.display = 'none';
         arrow.classList.add('arrowDown');
         arrow.classList.remove('arrowUp');
-    }
+    };
 
     arrowOc.addEventListener('click', function() {
         if (arrowOc.classList.contains('arrowDown')) {

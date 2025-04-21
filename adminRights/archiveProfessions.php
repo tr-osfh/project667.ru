@@ -29,8 +29,9 @@ if ($stmt = $connection->prepare($sql)) {
                 echo "</td>";
                 echo "<td style='padding: 10px;'>";
                 echo '<div class="forms">';
-                echo '  <form action="changeProfession.php" method="post">';
+                echo '  <form action="../../expertRights/changeProfession.php" method="post">';
                 echo '      <input type="hidden" name="id" id="id" value= "' . $line['id'] . '">';
+                echo '      <input type="hidden" name="id" id="id" value= "' . $line['profname'] . '">';
                 echo '      <button type="submit">Изменить</button>';
                 echo '  </form>';
                 echo '</div> ';

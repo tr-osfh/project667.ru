@@ -1,5 +1,4 @@
 <?php
-
 $servername = "localhost";
 $username = "u3003666_root";
 $password = "9MhtHL8QmFHjbiK";
@@ -8,9 +7,11 @@ $connection = new mysqli($servername, $username, $password, $db);
 if ($connection->connect_error) {
     die("Ошибка: " . $connection->connect_error);
 }
-$id = $_SESSION['id'];
 
-$sql = "SELECT `avg_time`, `accuracy`, `misses`, `date`  FROM `test_chet_sound` WHERE `user_id` = ?";
+$id = $_SESSION['user_test_id'];
+$tableName = $_SESSION['tableName'];
+
+$sql = "SELECT `avg_time`, `accuracy`, `misses`, `date`  FROM $tableName WHERE `user_id` = ?";
 if ($stmt = $connection->prepare($sql)) {
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -18,7 +19,7 @@ if ($stmt = $connection->prepare($sql)) {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        echo "<p id = 'old_res_title'>Результаты предыдущих попыток</p>";
+        echo "<p id ='res_title'>Результаты предыдущих попыток</p>";
         echo "<table style='width: 100%; border-collapse: collapse;'>";
         echo "<tr><th style='padding: 7px; text-align: left;'>Средняя реация</th>
             <th style='padding: 10px; text-align: left;'>Попадания</th>
@@ -36,7 +37,7 @@ if ($stmt = $connection->prepare($sql)) {
         }
         echo "</table>";
     } else {
-        // echo "У вас нет консультаций";
+        echo "У вас нет консультаций";
     }
 
     $stmt->close();  // Закрываем подготовленный запрос

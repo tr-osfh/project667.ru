@@ -19,7 +19,7 @@
     <!-- Выключение файла с php функиями -->
     <div class="header_container" id="header">
         <!-- Логотип в шапке -->
-        <a href="https://group667.ru/index.php" onclick="location.href='mainpage.html';" class="icon_button"></a>
+        <a href="https://group667.online/index.php" onclick="location.href='mainpage.html';" class="icon_button"></a>
         <h1>Личный кабинет Юзера</h1>
     </div>
     <h3>Актуальные данные</h3>
@@ -72,6 +72,7 @@
             <input type="text" id="age" name="age" placeholder="<?php echo getAge(); ?>" >
             <p>Электронная почта</p>
             <input type="text" id="email" name="email" placeholder="<?php echo getEmail(); ?>">
+            <p id="age_error">Неподходящий возраст!</p>
             <p id="email_error">Неверно введена почта!</p>
             <div>
                 <button id="afterEmail" type="submit">подтвердить</button>
@@ -122,8 +123,10 @@
         const password2 = document.getElementById('password2');
         const password_error = document.getElementById('password_error')
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const regex2 = /^\d+$/;
         const man_btn = document.getElementById('man_btn');
         const woman_btn = document.getElementById('woman_btn');
+        const age_error = document.getElementById('age_error');
 
         function checkInput(inputElement, expectedValue) {
             if (inputElement.value === expectedValue) {
@@ -133,6 +136,12 @@
             }
         }
 
+        function checkAge(age_inp) {
+            if (!regex2.test(age_inp)) return false; 
+
+            const age = parseInt(age_inp, 10);
+            return age >= 4 && age <= 106; // Проверка диапазона
+        }
 
         name_input.addEventListener('input', function() {
             checkInput(name_input, '<?php echo getName(); ?>');
@@ -145,6 +154,11 @@
         email_input.addEventListener('input', function() {
             checkInput(email_input, '<?php echo getEmail(); ?>');
         });
+
+        age_input.addEventListener('input', function() {
+            checkInput(age_input, '<?php echo getEmail(); ?>');
+        });
+
 
         email_input.addEventListener('blur', function() {
             if (!regex.test(email_input.value)) {
@@ -207,6 +221,24 @@
                     console.error('Ошибка:', error);
                 })
         });
+
+        age_input.addEventListener('blur', function() {
+            if (!checkAge(age_input.value)) {
+                age_error.style.display = 'block';
+                btn.style.display = 'none';
+            } else {
+                age_error.style.display = 'none';
+                btn.style.display = 'block';
+            }
+        });
+
+        age_input.addEventListener('input', function() {
+            if (checkAge(age_input.value)) {
+                age_error.style.display = 'none';
+                btn.style.display = 'block';
+            }
+        });
+
     </script>
 </body>
 

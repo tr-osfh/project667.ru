@@ -8,7 +8,7 @@ $connection = new mysqli($servername, $username, $password, $db);
 if ($connection->connect_error) {
     die("Ошибка: " . $connection->connect_error);
 }
-$id = $_SESSION['id'];
+
 $tableName = $_SESSION['tableName'];
 
 // Формируем SQL-запрос с JOIN
@@ -47,7 +47,7 @@ if ($stmt = $connection->prepare($sql)) {
         // Выводим данные
         while ($row = $result->fetch_assoc()) {
             echo "<tr>";
-            echo "<td style='padding: 10px; text-align: left'>" . htmlspecialchars($row['username']) . "</td>";
+            echo "<td class='username' table-id = '".$tableName."' style='padding: 10px; text-align: left'>" . htmlspecialchars($row['username']) . "</td>";
             echo "<td style='padding: 10px; text-align: left'>" . htmlspecialchars($row['avg_time']) . " мс</td>";
             echo "<td style='padding: 10px; text-align: left'>" . htmlspecialchars($row['accuracy']) . "</td>";
             echo "<td style='padding: 10px; text-align: left'>" . htmlspecialchars($row['misses']) . "</td>";

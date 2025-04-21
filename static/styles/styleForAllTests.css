@@ -173,3 +173,10 @@ button {
 #chet_sound_div{
     display: none;
 }
+
+#res_title{
+    text-align: center;
+    margin-top: 60px;
+    font-size: 30px;
+    font-weight: bold;
+}
